@@ -26,3 +26,19 @@
 - [ ] Snippets
 - [ ] Some weird galaxyline behaviour I'm not bothered to fix
 - [ ] Lazy loading
+
+## Info
+
+**LSP Servers used**
+
+Follow instructions [here](https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md)
+to install (just search for the corresponding language server name)
+
+- tsserver
+- pyright
+- hls (haskell language server)
+- clangd
+- jsonls
+- html
+- diagnosticls
+- vuels

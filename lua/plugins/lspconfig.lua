@@ -80,7 +80,14 @@ for _, lsp in ipairs(servers) do
 end
 -- }}}
 
--- {{{ Web: typescript, javascript, vue, eslint
+-- {{{ Web: html, typescript, javascript, vue, eslint
+local html_capabilities = vim.lsp.protocol.make_client_capabilities()
+html_capabilities.textDocument.completion.completionItem.snippetSupport = true
+nvim_lsp.html.setup({
+	capabilities = html_capabilities,
+	on_attach = on_attach,
+})
+
 nvim_lsp.tsserver.setup({
 	on_attach = function(client)
 		client.resolved_capabilities.document_formatting = false
