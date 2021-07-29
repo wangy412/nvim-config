@@ -50,6 +50,7 @@ vim.o.splitbelow = true
 
 -- option+backspace to delete word
 map({ "i", "<M-BS>", "<C-w>", { noremap = true } })
+map({ "c", "<M-BS>", "<C-w>", { noremap = true } })
 --select all
 map({ "n", "<leader><leader>", "ggVG", { noremap = true } })
 -- yank to system clipboard
