@@ -73,6 +73,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/yunze/.local/share/nvim/site/pack/packer/start/LuaSnip"
   },
+  ["emmet-vim"] = {
+    loaded = true,
+    path = "/Users/yunze/.local/share/nvim/site/pack/packer/start/emmet-vim"
+  },
   ["formatter.nvim"] = {
     loaded = true,
     path = "/Users/yunze/.local/share/nvim/site/pack/packer/start/formatter.nvim"

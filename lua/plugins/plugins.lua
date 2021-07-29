@@ -15,6 +15,7 @@ require("packer").startup(function()
 	use("~/Documents/Coding/Vim/nvim-scratchpad")
 	use("tpope/vim-eunuch")
 	use("plasticboy/vim-markdown")
+	use("mattn/emmet-vim")
 	use("L3MON4D3/LuaSnip")
 	use({
 		"glepnir/galaxyline.nvim",

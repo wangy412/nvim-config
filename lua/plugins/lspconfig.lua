@@ -81,13 +81,16 @@ end
 -- }}}
 
 -- {{{ Web: html, typescript, javascript, vue, eslint
-local html_capabilities = vim.lsp.protocol.make_client_capabilities()
-html_capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+-- html
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 nvim_lsp.html.setup({
-	capabilities = html_capabilities,
+	capabilities = capabilities,
 	on_attach = on_attach,
 })
 
+-- typescript
 nvim_lsp.tsserver.setup({
 	on_attach = function(client)
 		client.resolved_capabilities.document_formatting = false
@@ -97,6 +100,8 @@ nvim_lsp.tsserver.setup({
 		debounce_text_changes = 150,
 	},
 })
+
+-- linter
 local filetypes = {
 	typescript = "eslint",
 	typescriptreact = "eslint",
@@ -137,6 +142,8 @@ nvim_lsp.diagnosticls.setup({
 		formatFiletypes = formatFiletypes,
 	},
 })
+
+-- vue
 nvim_lsp.vuels.setup({
 	-- https://github.com/ngtinsmith/dotfiles/blob/b78bf3115d746d037c814ce6767b4c6ba38021c5/.vimrc#L559
 	on_attach = function(client)
