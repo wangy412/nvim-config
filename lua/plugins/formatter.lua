@@ -1,5 +1,5 @@
 local function filename()
-	return vim.api.nvim_buf_get_name(0)
+	return '"' .. vim.api.nvim_buf_get_name(0) .. '"'
 end
 
 local function prettier()

@@ -14,6 +14,7 @@ require("packer").startup(function()
 	use("mhartington/formatter.nvim")
 	use("~/Documents/Coding/Vim/nvim-scratchpad")
 	use("tpope/vim-eunuch")
+	use("plasticboy/vim-markdown")
 	use({
 		"glepnir/galaxyline.nvim",
 		branch = "main",
