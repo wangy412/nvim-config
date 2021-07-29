@@ -1,0 +1,4 @@
+-- local colorscheme = require("base16-colorscheme")
+-- local s = colorscheme.colorschemes["onedark"];
+-- s.base00 = nil
+-- colorscheme.setup("onedark")
