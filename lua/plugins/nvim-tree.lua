@@ -9,6 +9,15 @@ vim.g.nvim_tree_icons = {
 		arrow_closed = "",
 		arrow_open = "",
 	},
+	git = {
+		unstaged = "~",
+		staged = "+",
+		unmerged = "",
+		renamed = "➜",
+		untracked = "★",
+		deleted = "✗",
+		ignored = "◌",
+	},
 }
 map({ "n", "<C-n>", ":NvimTreeToggle<CR>", { noremap = true } })
 map({ "n", "<leader>r", ":NvimTreeRefresh<CR>", { noremap = true } })
