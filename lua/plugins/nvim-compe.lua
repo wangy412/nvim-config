@@ -37,9 +37,9 @@ require("compe").setup({
 
 -- Mappings
 local set_keymap_opts = { silent = true, expr = true, noremap = true }
-utils.map({ "n", "<C-Space>", "compe#complete()", set_keymap_opts })
-utils.map({ "n", "<CR>", "compe#confirm('<CR>')", set_keymap_opts })
-utils.map({ "n", "<C-e>", "compe#close('<C-e>')", set_keymap_opts })
+utils.map({ "i", "<C-Space>", "compe#complete()", set_keymap_opts })
+utils.map({ "i", "<CR>", "compe#confirm('<CR>')", set_keymap_opts })
+utils.map({ "i", "<C-e>", "compe#close('<C-e>')", set_keymap_opts })
 -- utils.map { "n", "<C-n>",     "compe#scroll({ 'delta': +4 })", set_keymap_opts }
 -- utils.map { "n", "<C-p>",     "compe#scroll({ 'delta': -4 })", set_keymap_opts }
 
