@@ -23,7 +23,7 @@
 
 - [ ] Use some base 16 colorscheme generator
 - [ ] Fix vuels and prettier formatting conflicts
-- [ ] Snippets
+- [x] Snippets
 - [ ] Some weird galaxyline behaviour I'm not bothered to fix
 - [ ] Lazy loading
 
@@ -42,3 +42,14 @@ to install (just search for the corresponding language server name)
 - html
 - diagnosticls
 - vuels
+
+**Other tools**
+This isn't the complete list, I'm not bothered to go around
+finding every single tool my config depends on.
+If anyone is actually looking and finds something I missed,
+please tell me.
+
+- [ripgrep](https://github.com/BurntSushi/ripgrep)
+- [stylua](https://github.com/johnnymorganz/stylua)
+- [clang format](https://clang.llvm.org/docs/ClangFormat.html)
+- [prettier](https://prettier.io/)
