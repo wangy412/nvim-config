@@ -22,7 +22,7 @@ end
 -- kommentary
 vim.g.kommentary_create_default_mappings = false
 utils.map({ "n", "<leader>,", "<Plug>kommentary_line_default", {} })
-utils.map({ "x", "<leader>,", "<Plug>kommentary_visual_default", {} })
+utils.map({ "x", "<leader>,", "<Plug>kommentary_visual_default<esc>", {} })
 
 require("kommentary.config").configure_language("default", {
 	use_consistent_indentation = true,
