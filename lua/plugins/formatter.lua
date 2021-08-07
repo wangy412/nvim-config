@@ -5,7 +5,7 @@ end
 local function prettier()
 	return {
 		exe = "prettier",
-		args = { "--stdin-filepath", filename(), "--single-quote" },
+		args = { "--stdin-filepath", filename() },
 		stdin = true,
 	}
 end
@@ -31,6 +31,8 @@ local filetype = {
 	javascript = { prettier },
 	typescript = { prettier },
 	markdown = { prettier },
+	scss = { prettier },
+	liquid = { prettier },
 	lua = { stylua },
 	c = { clangFormat },
 	cpp = { clangFormat },
@@ -45,7 +47,7 @@ vim.api.nvim_exec(
 	[[
 augroup FormatAutogroup
   autocmd!
-  autocmd BufWritePost *.js,*.ts,*.md,*lua,*.c,*.cpp FormatWrite
+  autocmd BufWritePost *scss,*.js,*.ts,*.md,*lua,*.c,*.cpp FormatWrite
 augroup END
 ]],
 	true

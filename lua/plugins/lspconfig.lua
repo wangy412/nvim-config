@@ -82,10 +82,17 @@ end
 
 -- {{{ Web: html, typescript, javascript, vue, eslint
 
--- html
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+-- html
 nvim_lsp.html.setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
+
+-- css/scss
+nvim_lsp.cssls.setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
 })
