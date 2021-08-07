@@ -202,7 +202,7 @@ gls.left[#gls.left + 1] = {
 			utils.highlight({
 				"ViModeSeparator",
 				mode_color(),
-				((is_file() and checkwidth()) and colors.section_bg or colors.bg),
+				(is_file() and colors.section_bg or colors.bg),
 			})
 
 			local alias = aliases[vim.fn.mode():byte()]
