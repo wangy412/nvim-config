@@ -107,6 +107,13 @@ augroup disable_autocomment
     autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 augroup end
 ]])
+-- set the colorcolum for markdown
+vim.cmd([[
+augroup markdown_colorcolumn
+    autocmd!
+    autocmd Filetype markdown setlocal colorcolumn=80
+augroup end
+]])
 
 -- tab size
 local two_spaces_filetypes = {

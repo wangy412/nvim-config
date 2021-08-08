@@ -21,18 +21,20 @@
 
 ## TODO
 
+- [ ] Don't display filetype when there is no filetype
+- [ ] Change `inoremap <CR>` to only have effect when completion menu is visible
 - [ ] Use some base 16 colorscheme generator
 - [ ] Fix vuels and prettier formatting conflicts
-- [x] Snippets
 - [ ] Some weird galaxyline behaviour I'm not bothered to fix
 - [ ] Lazy loading
 
 ## Info
 
-**LSP Servers used**
+### LSP Servers used
 
-Follow instructions [here](https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md)
-to install (just search for the corresponding language server name)
+Follow instructions
+[here](https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md) to
+install (just search for the corresponding language server name)
 
 - tsserver
 - pyright
@@ -43,11 +45,11 @@ to install (just search for the corresponding language server name)
 - diagnosticls
 - vuels
 
-**Other tools**
-This isn't the complete list, I'm not bothered to go around
-finding every single tool my config depends on.
-If anyone is actually looking and finds something I missed,
-please tell me.
+### Other tools
+
+This isn't the complete list, I'm not bothered to go around finding every single
+tool my config depends on. If anyone is actually looking and finds something I
+missed, please tell me.
 
 - [ripgrep](https://github.com/BurntSushi/ripgrep)
 - [stylua](https://github.com/johnnymorganz/stylua)

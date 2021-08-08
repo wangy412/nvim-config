@@ -58,7 +58,7 @@ require("telescope").setup({
 
 -- Key Mappings
 -- stylua: ignore start
-map({ "n", "<C-p>",      "<cmd>lua require('plugins.telescope').find_non_binary_files()<CR>" })
+map({ "n", "<C-p>",      "<cmd>lua require('telescope.bulitin').find_files()<CR>" })
 map({ "n", "<C-t>",      "<cmd>lua require('telescope.builtin').treesitter()<CR>"            })
 map({ "n", "<leader>fg", "<cmd>lua require('telescope.builtin').live_grep()<CR>"             })
 map({ "n", "<leader>fb", "<cmd>lua require('telescope.builtin').buffers()<CR>"               })
@@ -70,16 +70,16 @@ map({ "n", "<leader>rr", "<cmd>lua require('telescope.builtin').reloader()<CR>" 
 -- stylua: ignore end
 
 -- Find files but no binary files
-function M.find_non_binary_files()
-	require("telescope.builtin").find_files({
-		-- this is kind of a hack, because rg ignores binary files, but not with the --files option
-		-- so I'm basically saying give me all the files that aren't matched
-		-- along with an impossible regex (https://stackoverflow.com/a/2302992/13181476)
+-- function M.find_non_binary_files()
+-- 	require("telescope.builtin").find_files({
+-- 		-- this is kind of a hack, because rg ignores binary files, but not with the --files option
+-- 		-- so I'm basically saying give me all the files that aren't matched
+-- 		-- along with an impossible regex (https://stackoverflow.com/a/2302992/13181476)
 
-		-- TODO: this unfortunately has the side effect of adding a "./" to the start of every entry.
-		-- it somehow doesn't work when i don't pass the last "." option to it.
-		find_command = { "rg", "--files-without-match", "^\b$", "." },
-	})
-end
+-- 		-- TODO: this unfortunately has the side effect of adding a "./" to the start of every entry.
+-- 		-- it somehow doesn't work when i don't pass the last "." option to it.
+-- 		find_command = { "rg", "--files-without-match", "^\b$", "." },
+-- 	})
+-- end
 
 return M
