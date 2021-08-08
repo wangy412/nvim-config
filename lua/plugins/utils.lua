@@ -1,6 +1,8 @@
 local M = {}
 
 --[ My own ]--
+
+-- TODO: Change to just use arguments
 --- Convenience for vim.api.nvim_set_keymap
 --- Usage:
 ---   map { "n", "jk", "<esc>", { expr = true } }
@@ -14,6 +16,16 @@ function M.map(tbl)
 	end
 
 	vim.api.nvim_set_keymap(tbl[1], tbl[2], tbl[3], opts)
+end
+
+--- Check if a list contains an element
+function M.contains(list, x)
+	for _, v in ipairs(list) do
+		if v == x then
+			return true
+		end
+	end
+	return false
 end
 
 --[ https://github.com/disrupted/dotfiles/blob/6d720d18712e9c4313f8c155ec8bf12bd466a49e/.config/nvim/lua/conf/utils.lua ]--

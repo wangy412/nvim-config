@@ -5,7 +5,7 @@ end
 local function prettier()
 	return {
 		exe = "prettier",
-		args = { "--stdin-filepath", filename() },
+		args = { "--stdin-filepath", filename(), "--prose-wrap", "always" },
 		stdin = true,
 	}
 end

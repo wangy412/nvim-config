@@ -372,11 +372,25 @@ gls.right[#gls.right + 1] = {
 	},
 }
 gls.right[#gls.right + 1] = {
+	FileType = {
+		provider = function()
+			return vim.o.ft
+		end,
+		icon = "  ",
+		highlight = { colors.blue, colors.section_bg },
+		separator = " " .. (gitRootCondition() and getRightThinSep() or getRightSep()),
+		separator_highlight = {
+			gitRootCondition() and colors.blue or colors.section_bg,
+			gitRootCondition() and colors.section_bg or colors.bg,
+		},
+	},
+}
+gls.right[#gls.right + 1] = {
 	PerCent = {
 		provider = { "LinePercent" },
 		-- separator = ' ',
 		separator = " " .. getRightSep(),
-		separator_highlight = { colors.blue, gitRootCondition() and colors.section_bg or colors.bg },
+		separator_highlight = { colors.blue, colors.section_bg },
 		highlight = { colors.darkgrey, colors.blue },
 	},
 }
@@ -394,17 +408,21 @@ gls.right[#gls.right + 1] = {
 		highlight = { colors.darkgrey, colors.blue },
 	},
 }
--- gls.right[#gls.right + 1] = {
---     ColumnNumber = {
---         provider = function()
---             return string.format(":%d ", vim.fn.col('.'))
---         end,
---         separator = ' ',
---         separator_highlight = { colors.blue, colors.blue },
---         icon = '  ',
---         highlight = { colors.darkgrey, colors.blue }
---     }
--- }
+gls.right[#gls.right + 1] = {
+	WordCount = {
+		provider = function()
+			local word_count = vim.fn.wordcount()
+			local words = word_count.visual_words or word_count.words
+			return string.format("%d Words ", words)
+		end,
+		condition = function()
+			local show_word_count_filetypes = { "txt", "markdown" }
+			return utils.contains(show_word_count_filetypes, vim.o.ft)
+		end,
+		icon = "  ",
+		highlight = { colors.darkgrey, colors.blue },
+	},
+}
 -- }}}
 
 -- {{{ Short status line
