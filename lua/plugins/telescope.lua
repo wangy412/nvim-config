@@ -58,7 +58,7 @@ require("telescope").setup({
 
 -- Key Mappings
 -- stylua: ignore start
-map({ "n", "<C-p>",      "<cmd>lua require('telescope.bulitin').find_files()<CR>" })
+map({ "n", "<C-p>",      "<cmd>lua require('telescope.builtin').find_files()<CR>" })
 map({ "n", "<C-t>",      "<cmd>lua require('telescope.builtin').treesitter()<CR>"            })
 map({ "n", "<leader>fg", "<cmd>lua require('telescope.builtin').live_grep()<CR>"             })
 map({ "n", "<leader>fb", "<cmd>lua require('telescope.builtin').buffers()<CR>"               })
