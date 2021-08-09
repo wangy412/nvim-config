@@ -366,9 +366,9 @@ gls.right[#gls.right + 1] = {
 		provider = { GetGitRoot },
 		condition = gitRootCondition,
 		icon = "  ",
-		highlight = { colors.blue, colors.section_bg },
+		highlight = { colors.purple, colors.section_bg },
 		separator = " " .. getRightThinSep(),
-		separator_highlight = { colors.blue, colors.section_bg },
+		separator_highlight = { colors.purple, colors.section_bg },
 	},
 }
 gls.right[#gls.right + 1] = {
