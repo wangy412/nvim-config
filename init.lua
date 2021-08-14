@@ -1,12 +1,13 @@
-local map = require("plugins.utils").map
+local map = require("config.utils").map
 
---[ Must Haves ]--
+--[ Must Haves ]-- {{{
 map({ "i", "jk", "<Esc>", { noremap = true } })
 
 vim.o.syntax = "on"
 vim.g.mapleader = " "
+--}}}
 
---[ Colors ]--
+--[ Colors ]-- {{{
 vim.cmd([[
 colorscheme onedark_ts
 
@@ -14,8 +15,9 @@ highlight Normal ctermbg=none
 highlight EndOfBuffer ctermbg=none
 highlight SignColumn ctermbg=none
 ]])
+--}}}
 
---[ Options ]--
+--[ Options ]-- {{{
 vim.cmd("filetype plugin on")
 
 vim.o.relativenumber = true
@@ -37,7 +39,7 @@ vim.o.ignorecase = true
 vim.o.backup = false
 vim.o.writebackup = false
 
-vim.o.signcolumn = "number"
+vim.o.signcolumn = "yes"
 
 vim.o.updatetime = 300
 
@@ -46,7 +48,12 @@ vim.o.hlsearch = false
 vim.o.splitright = true
 vim.o.splitbelow = true
 
---[ Keymaps ]--
+vim.o.foldmethod = "marker"
+
+vim.o.undodir = "~/.vim/undo"
+-- }}}
+
+--[ Keymaps ]-- {{{
 -- https://www.youtube.com/watch?v=hSHATqh8svM
 -- keep cursor centered
 map({ "n", "n", "nzzzv" })
@@ -98,8 +105,9 @@ map({ "n", "<S-Up>", "<C-w>s<C-w>k" })
 map({ "n", "<S-Right>", "<C-w>v" })
 -- Copyright Tux 2020-2021. Do not reproduce without explicit permission.
 -- All reproductions must bear this original unmodified copyright notice.
+-- }}}
 
---[ Autocommands ]--
+--[ Autocommands ]-- {{{
 -- disable auto comment
 vim.cmd([[
 augroup disable_autocomment
@@ -111,7 +119,7 @@ augroup end
 vim.cmd([[
 augroup markdown_colorcolumn
     autocmd!
-    autocmd Filetype markdown setlocal colorcolumn=80
+    autocmd Filetype markdown setlocal colorcolumn=81
 augroup end
 ]])
 
@@ -139,6 +147,15 @@ augroup end
 ]],
 	table.concat(two_spaces_filetypes, ",")
 ))
+-- }}}
 
--- Plugins & Plugin config
-require("plugins")
+--[ Functions ]-- {{{
+_G.load = function(file)
+	require("plenary.reload").reload_module(file, true)
+	return require(file)
+end
+-- }}}
+
+--[ Plugins & Plugin config ]-- {{{
+require("config")
+-- }}}

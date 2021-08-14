@@ -22,9 +22,7 @@
 ## TODO
 
 - [ ] Don't display filetype when there is no filetype
-- [ ] Change `inoremap <CR>` to only have effect when completion menu is visible
 - [ ] Use some base 16 colorscheme generator
-- [ ] Fix vuels and prettier formatting conflicts
 - [ ] Some weird galaxyline behaviour I'm not bothered to fix
 - [ ] Lazy loading
 

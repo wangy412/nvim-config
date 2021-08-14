@@ -1,4 +1,4 @@
-local utils = require("plugins.utils")
+local utils = require("config.utils")
 
 -- nvim-ts-context-commentstring
 require("nvim-treesitter.configs").setup({

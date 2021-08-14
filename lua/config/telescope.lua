@@ -2,7 +2,7 @@ local previewers = require("telescope.previewers")
 local sorters = require("telescope.sorters")
 local actions = require("telescope.actions")
 local themes = require("telescope.themes")
-local map = require("plugins.utils").map
+local map = require("config.utils").map
 
 local M = {}
 

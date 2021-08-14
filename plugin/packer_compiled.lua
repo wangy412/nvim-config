@@ -160,6 +160,14 @@ _G.packer_plugins = {
   ["vim-markdown"] = {
     loaded = true,
     path = "/Users/yunze/.local/share/nvim/site/pack/packer/start/vim-markdown"
+  },
+  ["vim-surround"] = {
+    loaded = true,
+    path = "/Users/yunze/.local/share/nvim/site/pack/packer/start/vim-surround"
+  },
+  ["vim-wordmotion"] = {
+    loaded = true,
+    path = "/Users/yunze/.local/share/nvim/site/pack/packer/start/vim-wordmotion"
   }
 }
 

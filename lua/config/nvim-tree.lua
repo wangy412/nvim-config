@@ -1,4 +1,4 @@
-local map = require("plugins.utils").map
+local map = require("config.utils").map
 
 -- options
 vim.g.nvim_tree_ignore = { ".DS_Store", ".git" }

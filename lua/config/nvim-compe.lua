@@ -1,4 +1,4 @@
-local utils = require("plugins.utils")
+local utils = require("config.utils")
 
 vim.o.completeopt = "menuone,noselect"
 

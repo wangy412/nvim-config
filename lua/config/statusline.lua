@@ -1,7 +1,7 @@
 -- vim:foldmethod=marker
 
 local gl = require("galaxyline")
-local utils = require("plugins.utils")
+local utils = require("config.utils")
 local condition = require("galaxyline.condition")
 local diagnostic = require("galaxyline.provider_diagnostic")
 
