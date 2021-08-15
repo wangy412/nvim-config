@@ -4,23 +4,24 @@ local map = require("config.utils").map
 vim.g.nvim_tree_ignore = { ".DS_Store", ".git" }
 vim.g.nvim_tree_auto_open = 1
 vim.g.nvim_tree_indent_markers = 1
+vim.g.nvim_tree_symlink_arrow = " -> "
 vim.g.nvim_tree_icons = {
 	folder = {
 		arrow_closed = "",
 		arrow_open = "",
 	},
 	git = {
-		unstaged = "~",
-		staged = "+",
+		unstaged = "⚀",
+		staged = "⊞",
 		unmerged = "",
 		renamed = "➜",
 		untracked = "★",
-		deleted = "✗",
+		deleted = "⊟",
 		ignored = "◌",
 	},
 }
-map({ "n", "<C-n>", ":NvimTreeToggle<CR>", { noremap = true } })
-map({ "n", "<leader>r", ":NvimTreeRefresh<CR>", { noremap = true } })
+map({ "n", "<C-n>", ":NvimTreeToggle<CR>" })
+map({ "n", "<leader>r", ":NvimTreeRefresh<CR>" })
 
 vim.cmd([[
 augroup NvimTreeConf

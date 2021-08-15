@@ -153,6 +153,18 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/yunze/.local/share/nvim/site/pack/packer/start/vim-eunuch"
   },
+  ["vim-gitgutter"] = {
+    loaded = true,
+    path = "/Users/yunze/.local/share/nvim/site/pack/packer/start/vim-gitgutter"
+  },
+  ["vim-kitty"] = {
+    loaded = true,
+    path = "/Users/yunze/.local/share/nvim/site/pack/packer/start/vim-kitty"
+  },
+  ["vim-kitty-navigator"] = {
+    loaded = true,
+    path = "/Users/yunze/.local/share/nvim/site/pack/packer/start/vim-kitty-navigator"
+  },
   ["vim-liquid"] = {
     loaded = true,
     path = "/Users/yunze/.local/share/nvim/site/pack/packer/start/vim-liquid"

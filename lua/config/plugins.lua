@@ -20,6 +20,9 @@ require("packer").startup(function()
 	use("plasticboy/vim-markdown")
 	use("mattn/emmet-vim")
 	use("L3MON4D3/LuaSnip")
+	use("knubie/vim-kitty-navigator")
+	use("fladson/vim-kitty")
+	use("airblade/vim-gitgutter")
 	use({
 		"glepnir/galaxyline.nvim",
 		branch = "main",

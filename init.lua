@@ -94,10 +94,11 @@ map({ "v", "∆", ":m '>+1<CR>gv=gv" })
 map({ "v", "˚", ":m '<-2<CR>gv=gv" })
 
 -- switch between splits
-map({ "n", "<Left>", "<C-w>h" })
-map({ "n", "<Down>", "<C-w>j" })
-map({ "n", "<Up>", "<C-w>k" })
-map({ "n", "<Right>", "<C-w>l" })
+vim.g.kitty_navigator_no_mappings = 0
+map({ "n", "<C-left>", ":KittyNavigateLeft<CR>", { noremap = true, silent = true } })
+map({ "n", "<C-down>", ":KittyNavigateDown<CR>", { noremap = true, silent = true } })
+map({ "n", "<C-up>", ":KittyNavigateUp<CR>", { noremap = true, silent = true } })
+map({ "n", "<C-right>", ":KittyNavigateRight<CR>", { noremap = true, silent = true } })
 -- making new splits
 map({ "n", "<S-Left>", "<C-w>v<C-w>h" })
 map({ "n", "<S-Down>", "<C-w>s" })
@@ -137,6 +138,7 @@ local two_spaces_filetypes = {
 	"dart",
 	"vue",
 	"json",
+	"vim",
 }
 vim.cmd(string.format(
 	[[
