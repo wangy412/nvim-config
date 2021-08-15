@@ -11,12 +11,12 @@ vim.g.nvim_tree_icons = {
 		arrow_open = "",
 	},
 	git = {
-		unstaged = "⚀",
-		staged = "⊞",
+		unstaged = "▣",
+		staged = "",
 		unmerged = "",
 		renamed = "➜",
 		untracked = "★",
-		deleted = "⊟",
+		deleted = "",
 		ignored = "◌",
 	},
 }
