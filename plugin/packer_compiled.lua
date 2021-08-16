@@ -77,13 +77,17 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/yunze/.local/share/nvim/site/pack/packer/start/emmet-vim"
   },
+  ["feline.nvim"] = {
+    loaded = true,
+    path = "/Users/yunze/.local/share/nvim/site/pack/packer/start/feline.nvim"
+  },
   ["formatter.nvim"] = {
     loaded = true,
     path = "/Users/yunze/.local/share/nvim/site/pack/packer/start/formatter.nvim"
   },
-  ["galaxyline.nvim"] = {
+  ["gitsigns.nvim"] = {
     loaded = true,
-    path = "/Users/yunze/.local/share/nvim/site/pack/packer/start/galaxyline.nvim"
+    path = "/Users/yunze/.local/share/nvim/site/pack/packer/start/gitsigns.nvim"
   },
   kommentary = {
     loaded = true,
@@ -152,10 +156,6 @@ _G.packer_plugins = {
   ["vim-eunuch"] = {
     loaded = true,
     path = "/Users/yunze/.local/share/nvim/site/pack/packer/start/vim-eunuch"
-  },
-  ["vim-gitgutter"] = {
-    loaded = true,
-    path = "/Users/yunze/.local/share/nvim/site/pack/packer/start/vim-gitgutter"
   },
   ["vim-kitty"] = {
     loaded = true,

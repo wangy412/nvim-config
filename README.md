@@ -21,7 +21,6 @@
 
 ## TODO
 
-- [ ] Don't display filetype when there is no filetype
 - [ ] Use some base 16 colorscheme generator
 - [ ] Some weird galaxyline behaviour I'm not bothered to fix
 - [ ] Lazy loading

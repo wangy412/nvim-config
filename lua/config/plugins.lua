@@ -22,12 +22,18 @@ require("packer").startup(function()
 	use("L3MON4D3/LuaSnip")
 	use("knubie/vim-kitty-navigator")
 	use("fladson/vim-kitty")
-	use("airblade/vim-gitgutter")
 	use({
-		"glepnir/galaxyline.nvim",
-		branch = "main",
-		requires = { "kyazdani42/nvim-web-devicons", opt = true },
+		"lewis6991/gitsigns.nvim",
+		requires = {
+			"nvim-lua/plenary.nvim",
+		},
 	})
+	-- use({
+	-- 	"glepnir/galaxyline.nvim",
+	-- 	branch = "main",
+	-- 	requires = { "kyazdani42/nvim-web-devicons", opt = true },
+	-- })
+	use("famiu/feline.nvim")
 	use({
 		"kyazdani42/nvim-tree.lua",
 		requires = { "kyazdani42/nvim-web-devicons" },
