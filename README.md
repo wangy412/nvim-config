@@ -14,7 +14,17 @@
 - [nvim-ts-context-commentstring]('https://github.com/JoosepAlviste/nvim-ts-context-commentstring')
 - [formatter.nvim]('https://github.com/mhartington/formatter.nvim')
 - [nvim-scratchpad]('https://github.com/wangy412/nvim-scratchpad')
-- [galaxyline.nvim]('https://github.com/glepnir/galaxyline.nvim',)
+- [vim-enuch]('https://github.com/tpope/vim-enuch')
+- [vim-liquid]('https://github.com/tpope/vim-liquid')
+- [vim-surround]('https://github.com/tpope/vim-surround')
+- [vim-wordmotion]('https://github.com/chaoren/vim-wordmotion')
+- [vim-markdown]('https://github.com/plasticboy/vim-markdown')
+- [emmet-vim]('https://github.com/mattn/emmet-vim')
+- [LuaSnip]('https://github.com/L3MON4D3/LuaSnip')
+- [feline.nvim]('https://github.com/famiu/feline.nvim')
+- [vim-kitty-navigator]('https://github.com/knubie/vim-kitty-navigator')
+- [vim-kitty]('https://github.com/fladson/vim-kitty')
+- [gitsigns.nvim]('https://github.com/lewis6991/gitsigns.nvim')
 - [nvim-tree.lua]('https://github.com/kyazdani42/nvim-tree.lua',)
 - [telescope.nvim]('https://github.com/nvim-telescope/telescope.nvim',)
 - [nvim-treesitter]('https://github.com/nvim-treesitter/nvim-treesitter',)
@@ -22,7 +32,6 @@
 ## TODO
 
 - [ ] Use some base 16 colorscheme generator
-- [ ] Some weird galaxyline behaviour I'm not bothered to fix
 - [ ] Lazy loading
 
 ## Info
@@ -38,6 +47,7 @@ install (just search for the corresponding language server name)
 - hls (haskell language server)
 - clangd
 - jsonls
+- bashls
 - html
 - diagnosticls
 - vuels
@@ -46,7 +56,7 @@ install (just search for the corresponding language server name)
 
 This isn't the complete list, I'm not bothered to go around finding every single
 tool my config depends on. If anyone is actually looking and finds something I
-missed, please tell me.
+missed, please open an issue.
 
 - [ripgrep](https://github.com/BurntSushi/ripgrep)
 - [stylua](https://github.com/johnnymorganz/stylua)
