@@ -8,13 +8,23 @@ vim.g.mapleader = " "
 --}}}
 
 --[ Colors ]-- {{{
-vim.cmd([[
-colorscheme onedark_ts
+vim.g.nightfox_style = "nordfox"
+vim.g.nightfox_italic_comments = 1
+vim.g.nightfox_transparent = 1
+vim.g.nightfox_colors = {
+	bg_sidebar = "NONE",
+}
 
-highlight Normal ctermbg=none
-highlight EndOfBuffer ctermbg=none
-highlight SignColumn ctermbg=none
-]])
+require("nightfox").set()
+
+-- vim.cmd([[
+-- colorscheme nightfox
+--
+-- highlight Normal guibg=NONE
+-- highlight EndOfBuffer guibg=NONE
+-- highlight SignColumn guibg=NONE
+-- ]])
+
 --}}}
 
 --[ Options ]-- {{{

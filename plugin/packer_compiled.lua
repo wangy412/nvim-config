@@ -105,6 +105,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/yunze/.local/share/nvim/site/pack/packer/start/neoscroll.nvim"
   },
+  ["nightfox.nvim"] = {
+    loaded = true,
+    path = "/Users/yunze/.local/share/nvim/site/pack/packer/start/nightfox.nvim"
+  },
   ["nvim-colorizer.lua"] = {
     loaded = true,
     path = "/Users/yunze/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua"

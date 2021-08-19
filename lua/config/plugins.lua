@@ -2,6 +2,7 @@ vim.cmd([[packadd packer.nvim]])
 
 require("packer").startup(function()
 	use("wbthomason/packer.nvim")
+	use("EdenEast/nightfox.nvim")
 	use("neovim/nvim-lspconfig")
 	use("nvim-lua/lsp-status.nvim")
 	use("hrsh7th/nvim-compe")
