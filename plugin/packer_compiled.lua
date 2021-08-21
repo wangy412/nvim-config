@@ -89,6 +89,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/yunze/.local/share/nvim/site/pack/packer/start/gitsigns.nvim"
   },
+  ["haskell-vim"] = {
+    loaded = true,
+    path = "/Users/yunze/.local/share/nvim/site/pack/packer/start/haskell-vim"
+  },
   kommentary = {
     loaded = true,
     path = "/Users/yunze/.local/share/nvim/site/pack/packer/start/kommentary"

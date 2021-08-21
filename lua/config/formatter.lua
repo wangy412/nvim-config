@@ -30,6 +30,7 @@ end
 local filetype = {
 	javascript = { prettier },
 	typescript = { prettier },
+	html = { prettier },
 	markdown = { prettier },
 	scss = { prettier },
 	liquid = { prettier },
@@ -47,7 +48,7 @@ vim.api.nvim_exec(
 	[[
 augroup FormatAutogroup
   autocmd!
-  autocmd BufWritePost *scss,*.js,*.ts,*.md,*lua,*.c,*.cpp FormatWrite
+  autocmd BufWritePost *scss,*.html,*.js,*.ts,*.md,*lua,*.c,*.cpp FormatWrite
 augroup END
 ]],
 	true
