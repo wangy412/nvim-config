@@ -8,22 +8,25 @@ vim.g.mapleader = " "
 --}}}
 
 --[ Colors ]-- {{{
-vim.g.nightfox_style = "nordfox"
-vim.g.nightfox_italic_comments = 1
-vim.g.nightfox_transparent = 1
-vim.g.nightfox_colors = {
-	bg_sidebar = "NONE",
-}
+require("nightfox").setup({
+	fox = "nordfox",
+	transparent = true,
+	styles = {
+		comments = "italic",
+	},
+	colors = {
+		bg_sidebar = "NONE",
+		bg = "NONE",
+	},
+	hlgroups = {
+		LspDiagnosticsVirtualTextError = { bg = "NONE" },
+		LspDiagnosticsVirtualTextWarning = { bg = "NONE" },
+		LspDiagnosticsVirtualTextInformation = { bg = "NONE" },
+		LspDiagnosticsVirtualTextHint = { bg = "NONE" },
+	},
+})
 
-require("nightfox").set()
-
--- vim.cmd([[
--- colorscheme nightfox
---
--- highlight Normal guibg=NONE
--- highlight EndOfBuffer guibg=NONE
--- highlight SignColumn guibg=NONE
--- ]])
+require("nightfox").load()
 
 --}}}
 
@@ -104,7 +107,7 @@ map({ "v", "∆", ":m '>+1<CR>gv=gv" })
 map({ "v", "˚", ":m '<-2<CR>gv=gv" })
 
 -- switch between splits
-vim.g.kitty_navigator_no_mappings = 0
+vim.g.kitty_navigator_no_mappings = 1
 map({ "n", "<C-left>", ":KittyNavigateLeft<CR>", { noremap = true, silent = true } })
 map({ "n", "<C-down>", ":KittyNavigateDown<CR>", { noremap = true, silent = true } })
 map({ "n", "<C-up>", ":KittyNavigateUp<CR>", { noremap = true, silent = true } })

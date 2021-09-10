@@ -24,6 +24,7 @@ require("packer").startup(function()
 	use("L3MON4D3/LuaSnip")
 	use("knubie/vim-kitty-navigator")
 	use("fladson/vim-kitty")
+	use("kosayoda/nvim-lightbulb")
 	use({
 		"lewis6991/gitsigns.nvim",
 		requires = {

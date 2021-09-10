@@ -27,6 +27,14 @@ local function clangFormat()
 	}
 end
 
+local function ormolu()
+	return {
+		exe = "ormolu",
+		args = { filename() },
+		stdin = true,
+	}
+end
+
 local filetype = {
 	javascript = { prettier },
 	typescript = { prettier },
@@ -37,6 +45,7 @@ local filetype = {
 	lua = { stylua },
 	c = { clangFormat },
 	cpp = { clangFormat },
+	haskell = { ormolu },
 }
 
 require("formatter").setup({
@@ -48,7 +57,7 @@ vim.api.nvim_exec(
 	[[
 augroup FormatAutogroup
   autocmd!
-  autocmd BufWritePost *scss,*.html,*.js,*.ts,*.md,*lua,*.c,*.cpp FormatWrite
+  autocmd BufWritePost *hs,*scss,*.html,*.js,*.ts,*.md,*lua,*.c,*.cpp FormatWrite
 augroup END
 ]],
 	true
