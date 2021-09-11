@@ -1,3 +1,5 @@
+local augroup = require("nvim-lua-autocmd").augroup
+
 local function filename()
 	return '"' .. vim.api.nvim_buf_get_name(0) .. '"'
 end
@@ -53,12 +55,20 @@ require("formatter").setup({
 })
 
 -- format on save
-vim.api.nvim_exec(
-	[[
-augroup FormatAutogroup
-  autocmd!
-  autocmd BufWritePost *hs,*scss,*.html,*.js,*.ts,*.md,*lua,*.c,*.cpp FormatWrite
-augroup END
-]],
-	true
-)
+local format_on_save_extensions = {
+	"hs",
+	"scss",
+	"html",
+	"js",
+	"ts",
+	"md",
+	"lua",
+	"c",
+	"cpp",
+}
+augroup("format_on_save", function(a)
+	a:autocmd("BufWritePost", function(c)
+		c:listExt(format_on_save_extensions)
+		c:exe("FormatWrite")
+	end)
+end)

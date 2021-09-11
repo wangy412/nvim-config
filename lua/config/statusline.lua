@@ -60,11 +60,25 @@ components.left.active[#components.left.active + 1] = {
 	end,
 }
 
+-- File Icon
+components.left.active[#components.left.active + 1] = {
+	provider = function(component)
+		local _, icon = require("feline.providers.file").file_info(component)
+		return "  " .. icon.str
+	end,
+	hl = function()
+		local _, icon = require("feline.providers.file").file_info({})
+		return {
+			fg = icon.hl.fg,
+			bg = "section_bg",
+		}
+	end,
+}
 -- Filename
 components.left.active[#components.left.active + 1] = {
 	provider = function(component)
-		local file_info = require("feline.providers.file").file_info(component)
-		return "  " .. file_info .. " "
+		local file_info, _ = require("feline.providers.file").file_info(component)
+		return file_info .. " "
 	end,
 	hl = {
 		fg = "blue",
@@ -157,11 +171,16 @@ components.right.active[#components.right.active + 1] = {
 
 -- Git branch
 components.right.active[#components.right.active + 1] = {
+	-- provider = function(component)
+	-- 	local s, i =  require("feline.providers.git").git_branch(component)
+	--        return " " .. s, i
+	-- end,
 	provider = "git_branch",
 	hl = {
 		fg = "purple",
 		bg = "section_bg",
 	},
+	icon = "  ",
 }
 
 -- Separator
@@ -257,6 +276,8 @@ local colors = {
 	darkgrey = "#2c323d",
 	middlegrey = "#8791A5",
 	section_bg = "#38393f",
+    fg = "#D0D0D0",
+    bg = "NONE",
 }
 -- }}}
 
@@ -280,9 +301,13 @@ local vi_mode_colors = {
 -- }}}
 
 require("feline").setup({
-	default_bg = "NONE",
-	default_fg = "#D0D0D0",
+	-- default_bg = "NONE",
+	-- default_fg = "#D0D0D0",
 	colors = colors,
-	components = components,
+	-- slight hack to deal with the new way of defining statuslines
+	components = {
+		active = { components.left.active, components.mid.active, components.right.active },
+		inactive = { components.left.inactive, components.right.inactive },
+	},
 	vi_mode_colors = vi_mode_colors,
 })

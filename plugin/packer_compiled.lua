@@ -121,9 +121,17 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/yunze/.local/share/nvim/site/pack/packer/start/nvim-compe"
   },
+  ["nvim-lightbulb"] = {
+    loaded = true,
+    path = "/Users/yunze/.local/share/nvim/site/pack/packer/start/nvim-lightbulb"
+  },
   ["nvim-lspconfig"] = {
     loaded = true,
     path = "/Users/yunze/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
+  },
+  ["nvim-lua-autocmd"] = {
+    loaded = true,
+    path = "/Users/yunze/.local/share/nvim/site/pack/packer/start/nvim-lua-autocmd"
   },
   ["nvim-scratchpad"] = {
     loaded = true,
@@ -164,6 +172,10 @@ _G.packer_plugins = {
   ["vim-eunuch"] = {
     loaded = true,
     path = "/Users/yunze/.local/share/nvim/site/pack/packer/start/vim-eunuch"
+  },
+  ["vim-fugitive"] = {
+    loaded = true,
+    path = "/Users/yunze/.local/share/nvim/site/pack/packer/start/vim-fugitive"
   },
   ["vim-kitty"] = {
     loaded = true,

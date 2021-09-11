@@ -1,4 +1,5 @@
 local map = require("config.utils").map
+local augroup = require("nvim-lua-autocmd").augroup
 
 -- options
 vim.g.nvim_tree_ignore = { ".DS_Store", ".git" }
@@ -23,9 +24,8 @@ vim.g.nvim_tree_icons = {
 map({ "n", "<C-n>", ":NvimTreeToggle<CR>" })
 map({ "n", "<leader>r", ":NvimTreeRefresh<CR>" })
 
-vim.cmd([[
-augroup NvimTreeConf
-    autocmd!
-    autocmd BufEnter NvimTree setlocal cursorline
-augroup END
-]])
+augroup("nvim_tree_conf", function(a)
+	a:autocmd("BufEnter", "NvimTree", function(cmd)
+		cmd:setlocal{"cursorline"}
+	end)
+end)

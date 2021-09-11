@@ -1,4 +1,5 @@
 local map = require("config.utils").map
+local augroup = require("nvim-lua-autocmd").augroup
 
 --[ Must Haves ]-- {{{
 map({ "i", "jk", "<Esc>", { noremap = true } })
@@ -123,19 +124,18 @@ map({ "n", "<S-Right>", "<C-w>v" })
 
 --[ Autocommands ]-- {{{
 -- disable auto comment
-vim.cmd([[
-augroup disable_autocomment
-    autocmd!
-    autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-augroup end
-]])
+augroup("disable_autocomment", function(a)
+	a:autocmd("FileType", "*", function(c)
+		c:setlocal({"formatoptions-=c", "formatoptions-=r", "formatoptions-=o"})
+	end)
+end)
+
 -- set the colorcolum for markdown
-vim.cmd([[
-augroup markdown_colorcolumn
-    autocmd!
-    autocmd Filetype markdown setlocal colorcolumn=81
-augroup end
-]])
+augroup("markdown_colorcolumn", function(a)
+	a:autocmd("FileType", "markdown", function(c)
+		c:setlocal({"colorcolumn=81"})
+	end)
+end)
 
 -- tab size
 local two_spaces_filetypes = {
@@ -153,15 +153,12 @@ local two_spaces_filetypes = {
 	"json",
 	"vim",
 }
-vim.cmd(string.format(
-	[[
-augroup tab_size
-    autocmd!
-    autocmd FileType %s setlocal tabstop=2 shiftwidth=2 softtabstop=2
-augroup end
-]],
-	table.concat(two_spaces_filetypes, ",")
-))
+augroup("tab_size", function(a)
+	a:autocmd("FileType", function(c)
+		c:list(two_spaces_filetypes)
+		c:setlocal({"tabstop=2", "shiftwidth=2", "softtabstop=2"})
+	end)
+end)
 -- }}}
 
 --[ Functions ]-- {{{

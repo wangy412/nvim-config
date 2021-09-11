@@ -1,6 +1,7 @@
 -- vim:foldmethod=marker
 
 local nvim_lsp = require("lspconfig")
+local augroup = require("nvim-lua-autocmd").augroup
 
 -- {{{ On attach
 -- Use an on_attach function to only map the following keys
@@ -182,12 +183,11 @@ nvim_lsp.vuels.setup({
 	},
 })
 -- vue autoformat
-vim.cmd([[
-augroup VueFmt
-    autocmd!
-    autocmd BufWritePre *.vue lua vim.lsp.buf.formatting_sync(nil, 1000)
-augroup END
-]])
+augroup("VueFmt", function(a)
+	a:autocmd_simple("BufWritePre", "*.vue", function()
+		vim.lsp.buf.formatting_sync(nil, 1000)
+	end)
+end)
 -- }}}
 
 -- {{{ Lua
