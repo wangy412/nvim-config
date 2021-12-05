@@ -1,29 +1,29 @@
 -- vim:foldmethod=marker
 
-local utils = require("config.utils")
+local utils = require "config.utils"
 
 -- Boilerplate init {{{
 local properties = {
-	force_inactive = {
-		filetypes = {},
-		buftypes = {},
-		bufnames = {},
-	},
+    force_inactive = {
+        filetypes = {},
+        buftypes = {},
+        bufnames = {},
+    },
 }
 
 local components = {
-	left = {
-		active = {},
-		inactive = {},
-	},
-	mid = {
-		active = {},
-		inactive = {},
-	},
-	right = {
-		active = {},
-		inactive = {},
-	},
+    left = {
+        active = {},
+        inactive = {},
+    },
+    mid = {
+        active = {},
+        inactive = {},
+    },
+    right = {
+        active = {},
+        inactive = {},
+    },
 }
 -- }}}
 
@@ -47,195 +47,207 @@ local components = {
 -- Left {{{
 -- Vim mode
 components.left.active[#components.left.active + 1] = {
-	provider = function()
-		return " " .. require("feline.providers.vi_mode").get_vim_mode() .. " "
-	end,
-	hl = function()
-		return {
-			name = require("feline.providers.vi_mode").get_mode_highlight_name(),
-			bg = require("feline.providers.vi_mode").get_mode_color(),
-			fg = "black",
-			style = "bold",
-		}
-	end,
+    provider = function()
+        return " " .. require("feline.providers.vi_mode").get_vim_mode() .. " "
+    end,
+    hl = function()
+        return {
+            name = require("feline.providers.vi_mode").get_mode_highlight_name(),
+            bg = require("feline.providers.vi_mode").get_mode_color(),
+            fg = "black",
+            style = "bold",
+        }
+    end,
+    priority = 1,
 }
 
 -- File Icon
 components.left.active[#components.left.active + 1] = {
-	provider = function(component)
-		local _, icon = require("feline.providers.file").file_info(component)
-		return "  " .. icon.str
-	end,
-	hl = function()
-		local _, icon = require("feline.providers.file").file_info({})
-		return {
-			fg = icon.hl.fg,
-			bg = "section_bg",
-		}
-	end,
+    provider = function(component)
+        local _, icon = require("feline.providers.file").file_info(component, {})
+        return "  " .. icon.str
+    end,
+    hl = function()
+        local _, icon = require("feline.providers.file").file_info({}, {})
+        return {
+            fg = icon.hl.fg,
+            bg = "section_bg",
+        }
+    end,
+    priority = 1,
 }
 -- Filename
 components.left.active[#components.left.active + 1] = {
-	provider = function(component)
-		local file_info, _ = require("feline.providers.file").file_info(component)
-		return file_info .. " "
-	end,
-	hl = {
-		fg = "blue",
-		bg = "section_bg",
-	},
-	right_sep = " ",
-	type = "unique",
+    provider = function(component)
+        local file_info, _ = require("feline.providers.file").file_info(component, { right_sep = " ", type = "unique" })
+        return file_info .. " "
+    end,
+    hl = {
+        fg = "blue",
+        bg = "section_bg",
+    },
+    priority = 1,
+}
+
+-- Blank component for background styling purposes
+components.left.active[#components.left.active + 1] = {
+    provider = function()
+        return ""
+    end,
+    hl = { bg = "NONE" },
 }
 
 -- LSP Diagnostics
 components.left.active[#components.left.active + 1] = {
-	provider = "diagnostic_errors",
-	enabled = function()
-		return require("feline.providers.lsp").diagnostics_exist("Error")
-	end,
-	hl = {
-		fg = "red",
-		style = "bold",
-	},
+    provider = "diagnostic_errors",
+    enabled = function()
+        return require("feline.providers.lsp").diagnostics_exist "Error"
+    end,
+    hl = {
+        fg = "red",
+        style = "bold",
+    },
 }
 components.left.active[#components.left.active + 1] = {
-	provider = "diagnostic_warnings",
-	enabled = function()
-		return require("feline.providers.lsp").diagnostics_exist("Warning")
-	end,
-	hl = {
-		fg = "orange",
-		style = "bold",
-	},
+    provider = "diagnostic_warnings",
+    enabled = function()
+        return require("feline.providers.lsp").diagnostics_exist "Warning"
+    end,
+    hl = {
+        fg = "orange",
+        style = "bold",
+    },
 }
 components.left.active[#components.left.active + 1] = {
-	provider = "diagnostic_hints",
-	enabled = function()
-		return require("feline.providers.lsp").diagnostics_exist("Hint")
-	end,
-	hl = {
-		fg = "blue",
-		style = "bold",
-	},
+    provider = "diagnostic_hints",
+    enabled = function()
+        return require("feline.providers.lsp").diagnostics_exist "Hint"
+    end,
+    hl = {
+        fg = "blue",
+        style = "bold",
+    },
 }
 components.left.active[#components.left.active + 1] = {
-	provider = "diagnostic_info",
-	enabled = function()
-		return require("feline.providers.lsp").diagnostics_exist("Information")
-	end,
-	hl = {
-		fg = "blue",
-		style = "bold",
-	},
+    provider = "diagnostic_info",
+    enabled = function()
+        return require("feline.providers.lsp").diagnostics_exist "Information"
+    end,
+    hl = {
+        fg = "blue",
+        style = "bold",
+    },
 }
 -- }}}
 
 -- Middle {{{
 -- Language servers
 components.mid.active[#components.mid.active + 1] = {
-	provider = "lsp_client_names",
-	hl = {
-		fg = "middlegrey",
-		style = "italic",
-	},
+    provider = "lsp_client_names",
+    hl = {
+        fg = "middlegrey",
+        style = "italic",
+    },
 }
 -- }}}
 
 -- Right {{{
 -- Git diff
 components.right.active[#components.right.active + 1] = {
-	provider = "git_diff_added",
-	icon = "+",
-	hl = {
-		fg = "green",
-	},
-	right_sep = " ",
+    provider = "git_diff_added",
+    icon = "+",
+    hl = {
+        fg = "green",
+    },
+    right_sep = " ",
 }
 components.right.active[#components.right.active + 1] = {
-	provider = "git_diff_changed",
-	icon = "~",
-	hl = {
-		fg = "yellow",
-	},
-	right_sep = " ",
+    provider = "git_diff_changed",
+    icon = "~",
+    hl = {
+        fg = "yellow",
+    },
+    right_sep = " ",
 }
 components.right.active[#components.right.active + 1] = {
-	provider = "git_diff_removed",
-	icon = "-",
-	hl = {
-		fg = "red",
-	},
-	right_sep = " ",
+    provider = "git_diff_removed",
+    icon = "-",
+    hl = {
+        fg = "red",
+    },
+    right_sep = " ",
 }
 
 -- Git branch
 components.right.active[#components.right.active + 1] = {
-	-- provider = function(component)
-	-- 	local s, i =  require("feline.providers.git").git_branch(component)
-	--        return " " .. s, i
-	-- end,
-	provider = "git_branch",
-	hl = {
-		fg = "purple",
-		bg = "section_bg",
-	},
-	icon = "  ",
+    -- provider = function(component)
+    -- 	local s, i =  require("feline.providers.git").git_branch(component)
+    --        return " " .. s, i
+    -- end,
+    provider = "git_branch",
+    hl = {
+        fg = "purple",
+        bg = "section_bg",
+    },
+    icon = "  ",
 }
 
 -- Separator
 components.right.active[#components.right.active + 1] = {
-	provider = " ",
-	hl = {
-		bg = "section_bg",
-	},
+    provider = " ",
+    hl = {
+        bg = "section_bg",
+    },
 }
 
 -- Filetype
 components.right.active[#components.right.active + 1] = {
-	provider = function()
-		return "  " .. vim.o.ft .. " "
-	end,
-	enabled = function()
-		return vim.o.ft
-	end,
-	hl = { fg = "blue", bg = "section_bg" },
+    provider = function()
+        return "  " .. vim.o.ft .. " "
+    end,
+    enabled = function()
+        return vim.o.ft
+    end,
+    hl = { fg = "blue", bg = "section_bg" },
+    priority = -1,
 }
 
 -- Cursor percent
 components.right.active[#components.right.active + 1] = {
-	provider = function()
-		local curr_line = vim.fn.line(".")
-		local lines = vim.fn.line("$")
+    provider = function()
+        local curr_line = vim.fn.line "."
+        local lines = vim.fn.line "$"
 
-		return " " .. string.format("%2d%%%%", vim.fn.round(curr_line / lines * 100))
-	end,
-	hl = { fg = "darkgrey", bg = "blue" },
+        return " " .. string.format("%2d%%%%", vim.fn.round(curr_line / lines * 100))
+    end,
+    hl = { fg = "darkgrey", bg = "blue" },
+    priority = -1,
 }
 
 -- Line & Col number
 components.right.active[#components.right.active + 1] = {
-	provider = function()
-		local line = vim.fn.line(".")
-		local col = vim.fn.col(".")
-		local total = vim.fn.line("$")
-		return "  " .. string.format("%d/%d :%d ", line, total, col)
-	end,
-	hl = { fg = "darkgrey", bg = "blue" },
+    provider = function()
+        local line = vim.fn.line "."
+        local col = vim.fn.col "."
+        local total = vim.fn.line "$"
+        return "  " .. string.format("%d/%d :%d ", line, total, col)
+    end,
+    hl = { fg = "darkgrey", bg = "blue" },
+    priority = 1,
 }
 
 -- Word count
 components.right.active[#components.right.active + 1] = {
-	provider = function()
-		local word_count = vim.fn.wordcount()
-		local words = word_count.visual_words or word_count.words
-		return "  " .. string.format("%d Words ", words)
-	end,
-	enabled = function()
-		local show_word_count_filetypes = { "txt", "markdown" }
-		return utils.contains(show_word_count_filetypes, vim.o.ft)
-	end,
-	hl = { fg = "darkgrey", bg = "blue" },
+    provider = function()
+        local word_count = vim.fn.wordcount()
+        local words = word_count.visual_words or word_count.words
+        return "  " .. string.format("%d Words ", words)
+    end,
+    enabled = function()
+        local show_word_count_filetypes = { "txt", "markdown", "pandoc" }
+        return utils.contains(show_word_count_filetypes, vim.o.ft)
+    end,
+    hl = { fg = "darkgrey", bg = "blue" },
 }
 -- }}}
 
@@ -243,39 +255,39 @@ components.right.active[#components.right.active + 1] = {
 -- https://github.com/famiu/feline.nvim#disable-inactive-statusline
 -- Get highlight of inactive statusline by parsing the style, fg and bg of VertSplit
 local InactiveStatusHL = {
-	fg = vim.api.nvim_exec("highlight VertSplit", true):match("guifg=(#[0-9A-Fa-f]+)") or "#444444",
-	bg = vim.api.nvim_exec("highlight VertSplit", true):match("guibg=(#[0-9A-Fa-f]+)") or "#1E1E1E",
-	style = vim.api.nvim_exec("highlight VertSplit", true):match("gui=(#[0-9A-Fa-f]+)") or "",
+    fg = vim.api.nvim_exec("highlight VertSplit", true):match "guifg=(#[0-9A-Fa-f]+)" or "#444444",
+    bg = vim.api.nvim_exec("highlight VertSplit", true):match "guibg=(#[0-9A-Fa-f]+)" or "#1E1E1E",
+    style = vim.api.nvim_exec("highlight VertSplit", true):match "gui=(#[0-9A-Fa-f]+)" or "",
 }
 
 -- Add strikethrough to inactive statusline highlight style
 -- in order to have a thin line instead of the statusline
 if InactiveStatusHL.style == "" then
-	InactiveStatusHL.style = "strikethrough"
+    InactiveStatusHL.style = "strikethrough"
 else
-	InactiveStatusHL.style = InactiveStatusHL.style .. ",strikethrough"
+    InactiveStatusHL.style = InactiveStatusHL.style .. ",strikethrough"
 end
 
 -- Apply the highlight to the statusline
 -- by having an empty provider with the highlight
 components.left.inactive[1] = {
-	provider = "",
-	hl = InactiveStatusHL,
+    provider = "",
+    hl = InactiveStatusHL,
 }
 -- }}}
 
 -- Colors {{{
 local colors = {
-	white = "#cccccc",
-	blue = "#61afef",
-	green = "#98c379",
-	purple = "#c678dd",
-	orange = "#f29718",
-	red = "#e06c75",
-	yellow = "#e5c07b",
-	darkgrey = "#2c323d",
-	middlegrey = "#8791A5",
-	section_bg = "#38393f",
+    white = "#cccccc",
+    blue = "#61afef",
+    green = "#98c379",
+    purple = "#c678dd",
+    orange = "#f29718",
+    red = "#e06c75",
+    yellow = "#e5c07b",
+    darkgrey = "#2c323d",
+    middlegrey = "#8791A5",
+    section_bg = "#38393f",
     fg = "#D0D0D0",
     bg = "NONE",
 }
@@ -283,31 +295,29 @@ local colors = {
 
 -- Vi Mode Colors {{{
 local vi_mode_colors = {
-	NORMAL = "green",
-	OP = "green",
-	INSERT = "blue",
-	VISUAL = "yellow",
-	BLOCK = "yellow",
-	REPLACE = "red",
-	["V-REPLACE"] = "red",
-	ENTER = "cyan",
-	MORE = "cyan",
-	SELECT = "orange",
-	COMMAND = "purple",
-	SHELL = "purple",
-	TERM = "purple",
-	NONE = "orange",
+    NORMAL = "green",
+    OP = "green",
+    INSERT = "blue",
+    VISUAL = "yellow",
+    BLOCK = "yellow",
+    REPLACE = "red",
+    ["V-REPLACE"] = "red",
+    ENTER = "cyan",
+    MORE = "cyan",
+    SELECT = "orange",
+    COMMAND = "purple",
+    SHELL = "purple",
+    TERM = "purple",
+    NONE = "orange",
 }
 -- }}}
 
-require("feline").setup({
-	-- default_bg = "NONE",
-	-- default_fg = "#D0D0D0",
-	colors = colors,
-	-- slight hack to deal with the new way of defining statuslines
-	components = {
-		active = { components.left.active, components.mid.active, components.right.active },
-		inactive = { components.left.inactive, components.right.inactive },
-	},
-	vi_mode_colors = vi_mode_colors,
-})
+require("feline").setup {
+    colors = colors,
+    -- slight hack to deal with the new way of defining statuslines
+    components = {
+        active = { components.left.active, components.mid.active, components.right.active },
+        inactive = { components.left.inactive, components.right.inactive },
+    },
+    vi_mode_colors = vi_mode_colors,
+}
