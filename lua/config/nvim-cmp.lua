@@ -18,6 +18,7 @@ cmp.setup {
 
     mapping = {
         ["<CR>"] = cmp.mapping.confirm { select = false },
+        ["<ESC>"] = cmp.mapping.abort(),
         ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_next_item()
