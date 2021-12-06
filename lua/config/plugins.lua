@@ -5,7 +5,14 @@ require("packer").startup(function(use)
     use "EdenEast/nightfox.nvim"
     use "neovim/nvim-lspconfig"
     use "nvim-lua/lsp-status.nvim"
-    use "hrsh7th/nvim-compe"
+
+    use "hrsh7th/cmp-nvim-lsp"
+    use "hrsh7th/cmp-buffer"
+    use "hrsh7th/cmp-path"
+    use "hrsh7th/cmp-cmdline"
+    use "saadparwaiz1/cmp_luasnip"
+    use "hrsh7th/nvim-cmp"
+
     use "kyazdani42/nvim-web-devicons"
     use "karb94/neoscroll.nvim"
     use "onsails/lspkind-nvim"
