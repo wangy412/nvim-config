@@ -104,7 +104,7 @@ map { "n", "<leader><leader>", "ggVG" }
 -- yank to system clipboard
 map { "v", "<leader>y", [["+y]] }
 -- paste from system clipboard
-map { "v", "<leader>p", [["+p]] }
+map { "n", "<leader>p", [["+p]] }
 -- F10 to show highlight group
 map {
     "n",
