@@ -1,6 +1,3 @@
-require("lspkind").init({
-	symbol_map = {
-		Method = "ƒ",
-		Function = "ƒ",
-	},
-})
+require("lspkind").init {
+    preset = "codicons",
+}

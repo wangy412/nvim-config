@@ -47,8 +47,10 @@ ls.snippets = {
             i(0),
         }),
         s({ trig = "stscript", dscr = "Shebang for stack scripts" }, {
-            t { "#!/usr/bin/env stack",
-                "-- stack --resolver nightly-2021-12-04 script" },
+            t "#!/usr/bin/env stack",
+            newline(),
+            t "-- stack --resolver", i(1, "nightly-2021-12-04"), t "script",
+            i(0),
         }),
         s({ trig = "main", dscr = "Main module" }, {
             t { "module Main where",

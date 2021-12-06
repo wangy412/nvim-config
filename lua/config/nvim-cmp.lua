@@ -15,8 +15,9 @@ cmp.setup {
             require("luasnip").lsp_expand(args.body)
         end,
     },
+
     mapping = {
-        ["<CR>"] = cmp.mapping.confirm { select = true },
+        ["<CR>"] = cmp.mapping.confirm { select = false },
         ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_next_item()
@@ -59,9 +60,18 @@ cmp.setup {
     },
 }
 
+local function empty_format(_, vim_item)
+    vim_item.menu = ""
+    vim_item.kind = ""
+    return vim_item
+end
+
 cmp.setup.cmdline("/", {
     completion = {
         keyword_length = 3,
+    },
+    formatting = {
+        format = empty_format,
     },
     sources = {
         { name = "buffer" },
@@ -74,6 +84,9 @@ cmp.setup.cmdline(":", {
     },
     completion = {
         keyword_length = 3,
+    },
+    formatting = {
+        format = empty_format,
     },
     sources = cmp.config.sources({
         { name = "path" },
