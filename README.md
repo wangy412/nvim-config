@@ -2,6 +2,10 @@
 
 ## Plugins
 
+This list is probably horribly out of date because I don't remember to update it.
+Just... look at lua/config/plugins.lua instead.  
+Maybe I'll write a script to automatically update this list sometime.
+
 - [packer.nvim]('https://github.com/wbthomason/packer.nvim')
 - [nvim-lspconfig]('https://github.com/neovim/nvim-lspconfig')
 - [lsp-status.nvim]('https://github.com/nvim-lua/lsp-status.nvim')

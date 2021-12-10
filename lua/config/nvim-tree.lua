@@ -30,6 +30,15 @@ require("nvim-tree").setup {
         dotfiles = false,
         custom = { ".DS_Store", ".git" },
     },
+    view = {
+        width = 30,
+        auto_resize = true,
+        mappings = {
+            list = {
+                { key = "d", cb = require("nvim-tree.config").nvim_tree_callback "trash" },
+            },
+        },
+    },
 }
 
 map { "n", "<C-n>", ":NvimTreeToggle<CR>" }
