@@ -44,11 +44,64 @@ local components = {
 
 -- }}}
 
+-- Vi Mode {{{
+local vi_mode_colors = {
+    NORMAL = "green",
+    OP = "green",
+    INSERT = "blue",
+    VISUAL = "yellow",
+    BLOCK = "yellow",
+    REPLACE = "red",
+    ["V-REPLACE"] = "red",
+    ENTER = "cyan",
+    MORE = "cyan",
+    SELECT = "orange",
+    COMMAND = "purple",
+    SHELL = "purple",
+    TERM = "purple",
+    NONE = "orange",
+}
+
+local short_vim_mode = {
+    NORMAL = "N",
+    OP = "O",
+    INSERT = "I",
+    VISUAL = "V",
+    BLOCK = "VB",
+    REPLACE = "R",
+    ["V-REPLACE"] = "VR",
+    ENTER = "E",
+    MORE = "M",
+    SELECT = "S",
+    COMMAND = "C",
+    SHELL = "SH",
+    TERM = "T",
+    NONE = "-",
+}
+-- }}}
+
+-- {{{ Helper functions
+local function wider_than(cols)
+    return vim.api.nvim_win_get_width(0) > cols
+end
+
+local function wider_than_fn(cols)
+    return function()
+        return wider_than(cols)
+    end
+end
+-- }}}
+
 -- Left {{{
 -- Vim mode
 components.left.active[#components.left.active + 1] = {
     provider = function()
-        return " " .. require("feline.providers.vi_mode").get_vim_mode() .. " "
+        local vim_mode = require("feline.providers.vi_mode").get_vim_mode()
+        if wider_than(80) then
+            return " " .. vim_mode .. " "
+        else
+            return " " .. short_vim_mode[vim_mode] .. " "
+        end
     end,
     hl = function()
         return {
@@ -58,7 +111,6 @@ components.left.active[#components.left.active + 1] = {
             style = "bold",
         }
     end,
-    priority = 1,
 }
 
 -- File Icon
@@ -74,7 +126,6 @@ components.left.active[#components.left.active + 1] = {
             bg = "section_bg",
         }
     end,
-    priority = 1,
 }
 -- Filename
 components.left.active[#components.left.active + 1] = {
@@ -86,7 +137,6 @@ components.left.active[#components.left.active + 1] = {
         fg = "blue",
         bg = "section_bg",
     },
-    priority = 1,
 }
 
 -- Blank component for background styling purposes
@@ -148,6 +198,7 @@ components.mid.active[#components.mid.active + 1] = {
         fg = "middlegrey",
         style = "italic",
     },
+    enabled = wider_than_fn(80),
 }
 -- }}}
 
@@ -159,6 +210,7 @@ components.right.active[#components.right.active + 1] = {
     hl = {
         fg = "green",
     },
+    enabled = wider_than_fn(80),
     right_sep = " ",
 }
 components.right.active[#components.right.active + 1] = {
@@ -167,6 +219,7 @@ components.right.active[#components.right.active + 1] = {
     hl = {
         fg = "yellow",
     },
+    enabled = wider_than_fn(80),
     right_sep = " ",
 }
 components.right.active[#components.right.active + 1] = {
@@ -175,20 +228,18 @@ components.right.active[#components.right.active + 1] = {
     hl = {
         fg = "red",
     },
+    enabled = wider_than_fn(80),
     right_sep = " ",
 }
 
 -- Git branch
 components.right.active[#components.right.active + 1] = {
-    -- provider = function(component)
-    -- 	local s, i =  require("feline.providers.git").git_branch(component)
-    --        return " " .. s, i
-    -- end,
     provider = "git_branch",
     hl = {
         fg = "purple",
         bg = "section_bg",
     },
+    enabled = wider_than_fn(70),
     icon = "  ",
 }
 
@@ -206,10 +257,18 @@ components.right.active[#components.right.active + 1] = {
         return "  " .. vim.o.ft .. " "
     end,
     enabled = function()
-        return vim.o.ft
+        return vim.o.ft and wider_than(80)
     end,
     hl = { fg = "blue", bg = "section_bg" },
-    priority = -1,
+}
+
+-- Folder
+components.right.active[#components.right.active + 1] = {
+    provider = function()
+        return "  " .. vim.fn.expand "%:p:h:t" .. " "
+    end,
+    enabled = wider_than_fn(70),
+    hl = { fg = "blue", bg = "section_bg" },
 }
 
 -- Cursor percent
@@ -221,7 +280,7 @@ components.right.active[#components.right.active + 1] = {
         return " " .. string.format("%2d%%%%", vim.fn.round(curr_line / lines * 100))
     end,
     hl = { fg = "darkgrey", bg = "blue" },
-    priority = -1,
+    enabled = wider_than_fn(80),
 }
 
 -- Line & Col number
@@ -233,7 +292,7 @@ components.right.active[#components.right.active + 1] = {
         return "  " .. string.format("%d/%d :%d ", line, total, col)
     end,
     hl = { fg = "darkgrey", bg = "blue" },
-    priority = 1,
+    enabled = wider_than_fn(70),
 }
 
 -- Word count
@@ -245,7 +304,7 @@ components.right.active[#components.right.active + 1] = {
     end,
     enabled = function()
         local show_word_count_filetypes = { "txt", "markdown", "pandoc" }
-        return utils.contains(show_word_count_filetypes, vim.o.ft)
+        return utils.contains(show_word_count_filetypes, vim.o.ft) and wider_than(80)
     end,
     hl = { fg = "darkgrey", bg = "blue" },
 }
@@ -290,25 +349,6 @@ local colors = {
     section_bg = "#38393f",
     fg = "#D0D0D0",
     bg = "NONE",
-}
--- }}}
-
--- Vi Mode Colors {{{
-local vi_mode_colors = {
-    NORMAL = "green",
-    OP = "green",
-    INSERT = "blue",
-    VISUAL = "yellow",
-    BLOCK = "yellow",
-    REPLACE = "red",
-    ["V-REPLACE"] = "red",
-    ENTER = "cyan",
-    MORE = "cyan",
-    SELECT = "orange",
-    COMMAND = "purple",
-    SHELL = "purple",
-    TERM = "purple",
-    NONE = "orange",
 }
 -- }}}
 
