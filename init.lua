@@ -105,6 +105,7 @@ map { "n", "<leader><leader>", "ggVG" }
 map { "v", "<leader>y", [["+y]] }
 -- paste from system clipboard
 map { "n", "<leader>p", [["+p]] }
+map { "v", "<leader>p", [["+p]] }
 -- F10 to show highlight group
 map {
     "n",
