@@ -11,11 +11,11 @@ vim.g.nvim_tree_icons = {
         arrow_open = "",
     },
     git = {
-        unstaged = "▣",
+        unstaged = "",
         staged = "",
         unmerged = "",
         renamed = "➜",
-        untracked = "★",
+        untracked = "",
         deleted = "",
         ignored = "◌",
     },
@@ -25,11 +25,14 @@ require("nvim-tree").setup {
     update_focused_file = {
         enable = false,
     },
-    open_on_startup = true,
-    filters = {
-        dotfiles = false,
-        custom = { ".DS_Store", ".git" },
+    git = {
+        ignore = false,
     },
+    open_on_startup = true,
+    -- filters = {
+    --     dotfiles = false,
+    --     custom = { ".DS_Store", ".git" },
+    -- },
     view = {
         width = 30,
         auto_resize = true,
