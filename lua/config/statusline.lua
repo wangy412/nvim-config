@@ -50,6 +50,7 @@ local vi_mode_colors = {
     OP = "green",
     INSERT = "blue",
     VISUAL = "yellow",
+    LINES = "yellow",
     BLOCK = "yellow",
     REPLACE = "red",
     ["V-REPLACE"] = "red",
@@ -67,7 +68,8 @@ local short_vim_mode = {
     OP = "O",
     INSERT = "I",
     VISUAL = "V",
-    BLOCK = "VB",
+    LINES = "L",
+    BLOCK = "B",
     REPLACE = "R",
     ["V-REPLACE"] = "VR",
     ENTER = "E",
@@ -97,6 +99,7 @@ end
 components.left.active[#components.left.active + 1] = {
     provider = function()
         local vim_mode = require("feline.providers.vi_mode").get_vim_mode()
+        -- print("vim_mode: " .. vim_mode)
         if wider_than(80) then
             return " " .. vim_mode .. " "
         else
