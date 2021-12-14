@@ -100,20 +100,20 @@ end
 -- html
 nvim_lsp.html.setup {
     capabilities = capabilities,
-    on_attach = on_attach,
+    on_attach = M.on_attach,
 }
 
 -- css/scss
 nvim_lsp.cssls.setup {
     capabilities = capabilities,
-    on_attach = on_attach,
+    on_attach = M.on_attach,
 }
 
 -- typescript
 nvim_lsp.tsserver.setup {
     on_attach = function(client)
         client.resolved_capabilities.document_formatting = false
-        on_attach(client)
+        M.on_attach(client)
     end,
     flags = {
         debounce_text_changes = 150,
@@ -152,7 +152,7 @@ local formatFiletypes = {
     typescriptreact = "prettier",
 }
 nvim_lsp.diagnosticls.setup {
-    on_attach = on_attach,
+    on_attach = M.on_attach,
     filetypes = vim.tbl_keys(filetypes),
     init_options = {
         filetypes = filetypes,
@@ -167,7 +167,7 @@ nvim_lsp.vuels.setup {
     -- https://github.com/ngtinsmith/dotfiles/blob/b78bf3115d746d037c814ce6767b4c6ba38021c5/.vimrc#L559
     on_attach = function(client)
         client.resolved_capabilities.document_formatting = true
-        on_attach(client)
+        M.on_attach(client)
     end,
     init_options = {
         config = {
@@ -211,9 +211,16 @@ local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
+-- TODO: Make this project-specific
+-- Make the server aware of Neovim runtime files
+local workspace_library = vim.api.nvim_get_runtime_file("", true)
+-- And also hammerspoon
+-- (oof this doesn't work)
+-- table.insert(workspace_library, "/Applications/Hammerspoon.app/Contents/Resources/extensions/hs")
+
 require("lspconfig").sumneko_lua.setup {
     cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
-    on_attach = on_attach,
+    on_attach = M.on_attach,
     settings = {
         Lua = {
             runtime = {
@@ -223,12 +230,10 @@ require("lspconfig").sumneko_lua.setup {
                 path = runtime_path,
             },
             diagnostics = {
-                -- Get the language server to recognize the `vim` global
-                globals = { "vim" },
+                globals = { "vim", "hs" }, -- vim and hammerspoon globals
             },
             workspace = {
-                -- Make the server aware of Neovim runtime files
-                library = vim.api.nvim_get_runtime_file("", true),
+                library = workspace_library,
             },
             -- Do not send telemetry data containing a randomized but unique identifier
             telemetry = {
