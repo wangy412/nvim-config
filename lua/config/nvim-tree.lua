@@ -29,10 +29,10 @@ require("nvim-tree").setup {
         ignore = false,
     },
     open_on_startup = true,
-    -- filters = {
-    --     dotfiles = false,
-    --     custom = { ".DS_Store", ".git" },
-    -- },
+    filters = {
+        dotfiles = false,
+        custom = { ".DS_Store", ".git" },
+    },
     view = {
         width = 30,
         auto_resize = true,
