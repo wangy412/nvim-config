@@ -53,8 +53,8 @@ vim.o.expandtab = true
 vim.o.smartindent = true
 
 vim.o.hidden = true
-vim.o.mouse = "a"
 vim.o.scrolloff = 5
+-- vim.o.mouse = "a"
 
 vim.o.wrap = false
 
@@ -142,17 +142,14 @@ au.group("disable_autocomment", function(grp)
     grp.FileType = "setlocal formatoptions-=c formatoptions-=r formatoptions-=o"
 end)
 
--- set the colorcolum for markdown
-au.group("markdown_colorcolumn", function(grp)
-    grp.FileType = {
-        "markdown",
-        function()
-            vim.bo.colorcolumn = 81
-        end,
-    }
-end)
-
 -- tab size
+local function mk_tabsize_fn(tabsize)
+    return function()
+        vim.bo.tabstop = tabsize
+        vim.bo.shiftwidth = tabsize
+        vim.bo.softtabstop = tabsize
+    end
+end
 local two_spaces_filetypes = {
     "haskell",
     "html",
@@ -171,11 +168,11 @@ local two_spaces_filetypes = {
 au.group("tab_size", function(grp)
     grp.FileType = {
         table.concat(two_spaces_filetypes, ","),
-        function()
-            vim.bo.tabstop = 2
-            vim.bo.shiftwidth = 2
-            vim.bo.softtabstop = 2
-        end,
+        mk_tabsize_fn(2),
+    }
+    grp.FileType = {
+        "make",
+        mk_tabsize_fn(8),
     }
 end)
 -- }}}

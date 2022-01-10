@@ -91,10 +91,19 @@ local function swiftformat()
     }
 end
 
+local function rustfmt()
+    return {
+        exe = "rustfmt",
+        args = { "--emit=stdout" },
+        stdin = true,
+    }
+end
+
 local filetype = {
     javascript = { prettier },
     typescript = { prettier },
     html = { prettier },
+    pandoc = { prettier },
     elm = { elm_format },
     scss = { prettier },
     css = { prettier },
@@ -104,6 +113,7 @@ local filetype = {
     cpp = { clangFormat },
     haskell = { ormolu },
     swift = { swiftformat },
+    rust = { rustfmt },
 }
 
 require("formatter").setup {
@@ -118,11 +128,13 @@ local format_on_save_extensions = {
     "html",
     "elm",
     "js",
+    "rs",
     "ts",
     "lua",
     "c",
     "cpp",
     "swift",
+    "md",
 }
 
 au.group("format_on_save", function(grp)

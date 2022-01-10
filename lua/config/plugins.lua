@@ -26,7 +26,7 @@ require("packer").startup(function(use)
     use "neovimhaskell/haskell-vim"
     use "tpope/vim-surround"
     use "chaoren/vim-wordmotion"
-    use "plasticboy/vim-markdown"
+    -- use "plasticboy/vim-markdown"
     use "mattn/emmet-vim"
     use "L3MON4D3/LuaSnip"
     use "knubie/vim-kitty-navigator"
@@ -37,6 +37,7 @@ require("packer").startup(function(use)
     use "vim-pandoc/vim-pandoc"
     use "andweeb/presence.nvim"
     use "tikhomirov/vim-glsl"
+    use "b0o/SchemaStore.nvim"
     use {
         "lewis6991/gitsigns.nvim",
         requires = {
@@ -56,6 +57,7 @@ require("packer").startup(function(use)
         "nvim-telescope/telescope.nvim",
         requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
     }
+    use "nvim-telescope/telescope-symbols.nvim"
     use {
         "nvim-treesitter/nvim-treesitter",
         run = ":TSUpdate",

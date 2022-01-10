@@ -84,11 +84,13 @@ cmp.setup.cmdline(":", {
         completeopt = "menu,menuone,insert",
     },
     completion = {
+        autocomplete = false,
         keyword_length = 3,
     },
     formatting = {
         format = empty_format,
     },
+    preselect = cmp.PreselectMode.Item,
     sources = cmp.config.sources({
         { name = "path" },
     }, {

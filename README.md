@@ -22,7 +22,6 @@ Maybe I'll write a script to automatically update this list sometime.
 - [vim-liquid]('https://github.com/tpope/vim-liquid')
 - [vim-surround]('https://github.com/tpope/vim-surround')
 - [vim-wordmotion]('https://github.com/chaoren/vim-wordmotion')
-- [vim-markdown]('https://github.com/plasticboy/vim-markdown')
 - [emmet-vim]('https://github.com/mattn/emmet-vim')
 - [LuaSnip]('https://github.com/L3MON4D3/LuaSnip')
 - [feline.nvim]('https://github.com/famiu/feline.nvim')

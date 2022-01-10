@@ -318,7 +318,7 @@ components.right.active[#components.right.active + 1] = {
 -- Get highlight of inactive statusline by parsing the style, fg and bg of VertSplit
 local InactiveStatusHL = {
     fg = vim.api.nvim_exec("highlight VertSplit", true):match "guifg=(#[0-9A-Fa-f]+)" or "#444444",
-    bg = vim.api.nvim_exec("highlight VertSplit", true):match "guibg=(#[0-9A-Fa-f]+)" or "#1E1E1E",
+    bg = vim.api.nvim_exec("highlight VertSplit", true):match "guibg=(#[0-9A-Fa-f]+)" or "NONE",
     style = vim.api.nvim_exec("highlight VertSplit", true):match "gui=(#[0-9A-Fa-f]+)" or "",
 }
 

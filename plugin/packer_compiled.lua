@@ -74,6 +74,11 @@ _G.packer_plugins = {
     path = "/Users/yunze/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
+  ["SchemaStore.nvim"] = {
+    loaded = true,
+    path = "/Users/yunze/.local/share/nvim/site/pack/packer/start/SchemaStore.nvim",
+    url = "https://github.com/b0o/SchemaStore.nvim"
+  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "/Users/yunze/.local/share/nvim/site/pack/packer/start/cmp-buffer",
@@ -219,6 +224,11 @@ _G.packer_plugins = {
     path = "/Users/yunze/.local/share/nvim/site/pack/packer/start/presence.nvim",
     url = "https://github.com/andweeb/presence.nvim"
   },
+  ["telescope-symbols.nvim"] = {
+    loaded = true,
+    path = "/Users/yunze/.local/share/nvim/site/pack/packer/start/telescope-symbols.nvim",
+    url = "https://github.com/nvim-telescope/telescope-symbols.nvim"
+  },
   ["telescope.nvim"] = {
     loaded = true,
     path = "/Users/yunze/.local/share/nvim/site/pack/packer/start/telescope.nvim",
@@ -253,11 +263,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/yunze/.local/share/nvim/site/pack/packer/start/vim-liquid",
     url = "https://github.com/tpope/vim-liquid"
-  },
-  ["vim-markdown"] = {
-    loaded = true,
-    path = "/Users/yunze/.local/share/nvim/site/pack/packer/start/vim-markdown",
-    url = "https://github.com/plasticboy/vim-markdown"
   },
   ["vim-pandoc"] = {
     loaded = true,

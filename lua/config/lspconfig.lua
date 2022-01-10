@@ -83,7 +83,7 @@ capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 -- {{{ LSPs without special config
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { "pyright", "hls", "clangd", "jsonls", "bashls", "elmls" }
+local servers = { "pyright", "hls", "clangd", "bashls", "elmls", "rust_analyzer" }
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
         capabilities = capabilities,
@@ -93,6 +93,17 @@ for _, lsp in ipairs(servers) do
         },
     }
 end
+-- }}}
+
+-- {{{ Json
+nvim_lsp.jsonls.setup {
+    capabilities = capabilities,
+    settings = {
+        json = {
+            schemas = require("schemastore").json.schemas(),
+        },
+    },
+}
 -- }}}
 
 -- {{{ Web: html, typescript, javascript, vue, eslint
