@@ -1,9 +1,12 @@
-require("nvim-treesitter.configs").setup({
-	highlight = {
-		enable = true,
-		-- disable = { "vim", "netrw" },
-	},
-})
+require("nvim-treesitter.configs").setup {
+    highlight = {
+        enable = true,
+        -- disable = { "vim", "netrw" },
+    },
+    indent = {
+        enable = false,
+    },
+}
 
 require("nvim-treesitter.install").compilers = { "gcc-11" }
 

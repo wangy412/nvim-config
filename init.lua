@@ -56,6 +56,8 @@ vim.o.hidden = true
 vim.o.scrolloff = 5
 -- vim.o.mouse = "a"
 
+vim.o.swapfile = false
+
 vim.o.wrap = false
 
 vim.o.ignorecase = true
@@ -175,6 +177,15 @@ au.group("tab_size", function(grp)
         mk_tabsize_fn(8),
     }
 end)
+
+au({ "BufNewFile", "BufRead" }, {
+    "Dockerfile*",
+    "echom hallo",
+    -- function()
+    --     print "dockerfile syntax autocmd"
+    --     vim.o.ft = "Dockerfile"
+    -- end,
+})
 -- }}}
 
 --[ Functions ]-- {{{

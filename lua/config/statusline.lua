@@ -2,6 +2,8 @@
 
 local utils = require "config.utils"
 
+-- vim.o.laststatus = 3
+
 -- Boilerplate init {{{
 local properties = {
     force_inactive = {
@@ -154,7 +156,7 @@ components.left.active[#components.left.active + 1] = {
 components.left.active[#components.left.active + 1] = {
     provider = "diagnostic_errors",
     enabled = function()
-        return require("feline.providers.lsp").diagnostics_exist "Error"
+        return require("feline.providers.lsp").diagnostics_exist(vim.diagnostic.severity.ERROR)
     end,
     hl = {
         fg = "red",
@@ -164,7 +166,7 @@ components.left.active[#components.left.active + 1] = {
 components.left.active[#components.left.active + 1] = {
     provider = "diagnostic_warnings",
     enabled = function()
-        return require("feline.providers.lsp").diagnostics_exist "Warning"
+        return require("feline.providers.lsp").diagnostics_exist(vim.diagnostic.severity.WARN)
     end,
     hl = {
         fg = "orange",
@@ -174,7 +176,7 @@ components.left.active[#components.left.active + 1] = {
 components.left.active[#components.left.active + 1] = {
     provider = "diagnostic_hints",
     enabled = function()
-        return require("feline.providers.lsp").diagnostics_exist "Hint"
+        return require("feline.providers.lsp").diagnostics_exist(vim.diagnostic.severity.HINT)
     end,
     hl = {
         fg = "blue",
@@ -184,7 +186,7 @@ components.left.active[#components.left.active + 1] = {
 components.left.active[#components.left.active + 1] = {
     provider = "diagnostic_info",
     enabled = function()
-        return require("feline.providers.lsp").diagnostics_exist "Information"
+        return require("feline.providers.lsp").diagnostics_exist(vim.diagnostic.severity.INFO)
     end,
     hl = {
         fg = "blue",
@@ -356,7 +358,7 @@ local colors = {
 -- }}}
 
 require("feline").setup {
-    colors = colors,
+    theme = colors,
     -- slight hack to deal with the new way of defining statuslines
     components = {
         active = { components.left.active, components.mid.active, components.right.active },

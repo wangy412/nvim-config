@@ -13,6 +13,8 @@ require("packer").startup(function(use)
     use "saadparwaiz1/cmp_luasnip"
     use "hrsh7th/nvim-cmp"
 
+    use "ggandor/lightspeed.nvim"
+
     use "kyazdani42/nvim-web-devicons"
     use "karb94/neoscroll.nvim"
     use "onsails/lspkind-nvim"
@@ -23,6 +25,7 @@ require("packer").startup(function(use)
     use "tpope/vim-eunuch"
     use "tpope/vim-liquid"
     use "tpope/vim-fugitive"
+    use "tpope/vim-repeat"
     use "neovimhaskell/haskell-vim"
     use "tpope/vim-surround"
     use "chaoren/vim-wordmotion"
@@ -38,6 +41,8 @@ require("packer").startup(function(use)
     use "andweeb/presence.nvim"
     use "tikhomirov/vim-glsl"
     use "b0o/SchemaStore.nvim"
+    use "ekalinin/Dockerfile.vim"
+    use "jghauser/mkdir.nvim"
     use {
         "lewis6991/gitsigns.nvim",
         requires = {

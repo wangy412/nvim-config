@@ -17,7 +17,7 @@ vim.g.table_mode_header_fillchar = "-"
 
 -- vim-pandoc
 vim.g["pandoc#modules#disabled"] = { "formatting", "completion", "folding" }
-vim.g["pandoc#syntax#codeblocks#embeds#langs"] = { "c", "cpp", "js=javascript", "ts=typescript" }
+vim.g["pandoc#syntax#codeblocks#embeds#langs"] = { "c", "cpp", "js=javascript", "ts=typescript", "haskell=haskell" }
 vim.g["pandoc#syntax#conceal#blacklist"] = { "definition" }
 vim.g["pandoc#syntax#style#use_definition_lists"] = 0
 

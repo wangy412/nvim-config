@@ -8,12 +8,26 @@ local M = {}
 -- {{{ On attach
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
-M.on_attach = function(_, bufnr)
+M.on_attach = function(client, bufnr)
     local function buf_set_keymap(...)
         vim.api.nvim_buf_set_keymap(bufnr, ...)
     end
     local function buf_set_option(...)
         vim.api.nvim_buf_set_option(bufnr, ...)
+    end
+
+    -- TODO: come up with a system for default formatters for certian filetypes
+    if vim.api.nvim_buf_get_option(bufnr, "filetype") == "vue" and client.name == "null-ls" then
+        client.resolved_capabilities.document_formatting = false
+    end
+
+    if client.resolved_capabilities.document_formatting then
+        vim.cmd [[
+            augroup LspFormatting
+                autocmd! * <buffer>
+                autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync(nil, nil, {"null-ls"})
+            augroup END
+            ]]
     end
 
     --Enable completion triggered by <c-x><c-o>
@@ -36,10 +50,9 @@ M.on_attach = function(_, bufnr)
     -- buf_set_keymap("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
     buf_set_keymap("n", "<space>ca", "<cmd>lua require('telescope.builtin').lsp_code_actions()<CR>", opts)
     buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-    buf_set_keymap("n", "<space>e", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", opts)
-    buf_set_keymap("n", "<space>[", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
-    buf_set_keymap("n", "<space>]", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
-    buf_set_keymap("n", "<space>qq", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
+    buf_set_keymap("n", "<space>e", "<cmd>lua vim.diagnostic.show_line_diagnostics()<CR>", opts)
+    buf_set_keymap("n", "<space>[", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
+    buf_set_keymap("n", "<space>]", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
     buf_set_keymap("n", "<space>ff", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 end
 -- }}}
@@ -63,15 +76,11 @@ nvim_lsp.util.default_config = vim.tbl_extend("force",
 -- stylua: ignore end
 
 -- show the diagnostics in a popup
--- vim.cmd [[
--- autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics({ focusable = false })
--- autocmd CursorHoldI * silent! lua vim.lsp.diagnostic.show_line_diagnostics({ focusable = false })
--- ]]
 au.group("lspconfig", function(grp)
     grp.CursorHold = function()
-        vim.lsp.diagnostic.show_line_diagnostics { focusable = false }
+        vim.diagnostic.open_float { focusable = false }
     end
-    grp.CursorHoldI = "silent! vim.lsp.diagnostic.show_line_diagnostics { focusable = false }"
+    grp.CursorHoldI = "silent! lua vim.diagnostic.open_float { focusable = false }"
 end)
 
 -- }}}
@@ -79,11 +88,12 @@ end)
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+capabilities.offsetEncoding = { "utf-16" } -- https://github.com/jose-elias-alvarez/null-ls.nvim/issues/428
 
 -- {{{ LSPs without special config
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { "pyright", "hls", "clangd", "bashls", "elmls", "rust_analyzer" }
+local servers = { "jedi_language_server", "hls", "clangd", "bashls", "elmls", "rust_analyzer" }
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
         capabilities = capabilities,
@@ -131,47 +141,7 @@ nvim_lsp.tsserver.setup {
     },
 }
 
--- linter
-local filetypes = {
-    typescript = "eslint",
-    typescriptreact = "eslint",
-}
-local linters = {
-    eslint = {
-        sourceName = "eslint",
-        command = "eslint_d",
-        rootPatterns = { ".eslintrc.js", "package.json" },
-        debounce = 100,
-        args = { "--stdin", "--stdin-filename", "%filepath", "--format", "json" },
-        parseJson = {
-            errorsRoot = "[0].messages",
-            line = "line",
-            column = "column",
-            endLine = "endLine",
-            endColumn = "endColumn",
-            message = "${message} [${ruleId}]",
-            security = "severity",
-        },
-        securities = { [2] = "error", [1] = "warning" },
-    },
-}
-local formatters = {
-    prettier = { command = "prettier", args = { "--stdin-filepath", "%filepath" } },
-}
-local formatFiletypes = {
-    typescript = "prettier",
-    typescriptreact = "prettier",
-}
-nvim_lsp.diagnosticls.setup {
-    on_attach = M.on_attach,
-    filetypes = vim.tbl_keys(filetypes),
-    init_options = {
-        filetypes = filetypes,
-        linters = linters,
-        formatters = formatters,
-        formatFiletypes = formatFiletypes,
-    },
-}
+-- linter is set up with null-ls
 
 -- vue
 nvim_lsp.vuels.setup {

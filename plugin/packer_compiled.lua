@@ -69,6 +69,11 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  ["Dockerfile.vim"] = {
+    loaded = true,
+    path = "/Users/yunze/.local/share/nvim/site/pack/packer/start/Dockerfile.vim",
+    url = "https://github.com/ekalinin/Dockerfile.vim"
+  },
   LuaSnip = {
     loaded = true,
     path = "/Users/yunze/.local/share/nvim/site/pack/packer/start/LuaSnip",
