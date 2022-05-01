@@ -13,6 +13,12 @@ require("telescope").setup {
         },
     },
     defaults = {
+        mappings = {
+            i = {
+                ["<esc>"] = require("telescope.actions").close,
+                ["<M-BS>"] = false,
+            },
+        },
         vimgrep_arguments = {
             "rg",
             "--color=never",

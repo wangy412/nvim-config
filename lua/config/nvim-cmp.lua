@@ -71,9 +71,13 @@ cmp.setup.cmdline("/", {
     completion = {
         keyword_length = 3,
     },
+    confirmation = {
+        completeopt = "menu,menuone,insert",
+    },
     formatting = {
         format = empty_format,
     },
+    -- mapping = cmp.mapping.preset.cmdline(),
     sources = {
         { name = "buffer" },
     },
@@ -91,6 +95,7 @@ cmp.setup.cmdline(":", {
         format = empty_format,
     },
     preselect = cmp.PreselectMode.Item,
+    -- mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
         { name = "path" },
     }, {

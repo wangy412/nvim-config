@@ -10,39 +10,69 @@ vim.g.mapleader = " "
 --}}}
 
 --[ Colors ]-- {{{
-require("nightfox").setup {
-    fox = "nordfox",
-    transparent = true,
-    styles = {
-        comments = "italic",
-        keywords = "italic",
-    },
-    colors = {
-        bg_sidebar = "NONE",
-        bg = "NONE",
-    },
-    hlgroups = {
-        DiagnosticVirtualTextError = { bg = "NONE" },
-        DiagnosticVirtualTextWarning = { bg = "NONE" },
-        DiagnosticVirtualTextInformation = { bg = "NONE" },
-        DiagnosticVirtualTextHint = { bg = "NONE" },
-        Todo = { fg = "black" },
-        GitSignsAdd = { fg = "#a3be8c" },
-        GitSignsChange = { fg = "#b48ead" },
-        GitSignsDelete = { fg = "#bf616a" },
-        -- LspDiagnosticsVirtualTextError = { bg = "NONE" },
-        -- LspDiagnosticsVirtualTextWarning = { bg = "NONE" },
-        -- LspDiagnosticsVirtualTextInformation = { bg = "NONE" },
-        -- LspDiagnosticsVirtualTextHint = { bg = "NONE" },
-    },
-}
+-- {{{ old nightfox
+-- require("nightfox").setup {
+--     options = {
+--         transparent = true,
+--         styles = {
+--             comments = "italic",
+--             keywords = "italic",
+--         },
+--     },
+--     palettes = {
+--         all = {
+--             bg_sidebar = "NONE",
+--             bg = "NONE",
+--         },
+--     },
+--     groups = {
+--         DiagnosticVirtualTextError = { bg = "NONE" },
+--         DiagnosticVirtualTextWarning = { bg = "NONE", fg = "#d08770" },
+--         DiagnosticVirtualTextWarn = { bg = "NONE", fg = "#d08770" },
+--         DiagnosticVirtualTextInformation = { bg = "NONE" },
+--         DiagnosticVirtualTextInfo = { bg = "NONE" },
+--         DiagnosticVirtualTextHint = { bg = "NONE", fg = "#88c0d0" },
+--         LspDiagnosticsVirtualTextError = { bg = "NONE" },
+--         LspDiagnosticsVirtualTextWarning = { bg = "NONE", fg = "#d08770" },
+--         LspDiagnosticsVirtualTextWarn = { bg = "NONE", fg = "#d08770" },
+--         LspDiagnosticsVirtualTextInformation = { bg = "NONE" },
+--         LspDiagnosticsVirtualTextInfo = { bg = "NONE" },
+--         LspDiagnosticsVirtualTextHint = { bg = "NONE", fg = "#88c0d0" },
 
-require("nightfox").load()
+--         Todo = { fg = "black" },
 
+--         GitSignsAdd = { fg = "#a3be8c" },
+--         GitSignsChange = { fg = "#b48ead" },
+--         GitSignsDelete = { fg = "#bf616a" },
+--     },
+-- }
+
+-- vim.cmd "colorscheme nordfox"
+-- }}}
+
+-- {{{ palenight
+-- vim.g.palenight_terminal_italics = 1
+-- vim.cmd [[
+-- colorscheme palenight
+-- ]]
+-- }}}
+
+vim.o.background = "dark"
+vim.o.termguicolors = true
+
+vim.g.everforest_enable_italic = true
+vim.g.everforest_diagnostic_virtual_text = "colored"
+vim.g.everforest_better_performance = true
+vim.g.everforest_transparent_background = true
+vim.cmd [[
+colorscheme everforest
+]]
 --}}}
 
 --[ Options ]-- {{{
 vim.cmd "filetype plugin on"
+
+vim.o.laststatus = 3
 
 vim.o.relativenumber = true
 
@@ -99,8 +129,8 @@ end
 map { "n", "k", [[(v:count > 5 ? "m'" . v:count : "") . 'k' ]], { noremap = true, expr = true } }
 map { "n", "j", [[(v:count > 5 ? "m'" . v:count : "") . 'j' ]], { noremap = true, expr = true } }
 -- option+backspace to delete word
-map { "i", "<M-BS>", "<C-w>" }
-map { "c", "<M-BS>", "<C-w>" }
+map { "i", "<M-BS>", "<C-w>", { noremap = false } }
+map { "c", "<M-BS>", "<C-w>", { noremap = false } }
 --select all
 map { "n", "<leader><leader>", "ggVG" }
 -- yank to system clipboard
@@ -177,15 +207,6 @@ au.group("tab_size", function(grp)
         mk_tabsize_fn(8),
     }
 end)
-
-au({ "BufNewFile", "BufRead" }, {
-    "Dockerfile*",
-    "echom hallo",
-    -- function()
-    --     print "dockerfile syntax autocmd"
-    --     vim.o.ft = "Dockerfile"
-    -- end,
-})
 -- }}}
 
 --[ Functions ]-- {{{

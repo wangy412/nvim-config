@@ -3,7 +3,6 @@ local au = require "au"
 
 -- options
 
-vim.g.nvim_tree_indent_markers = 1
 vim.g.nvim_tree_symlink_arrow = " -> "
 vim.g.nvim_tree_icons = {
     folder = {
@@ -28,18 +27,27 @@ require("nvim-tree").setup {
     git = {
         ignore = false,
     },
-    open_on_startup = true,
+    open_on_setup = true,
     filters = {
         dotfiles = false,
         custom = { ".DS_Store", ".git" },
     },
+    renderer = {
+        indent_markers = {
+            enable = true,
+        },
+    },
     view = {
         width = 30,
-        auto_resize = true,
         mappings = {
             list = {
                 { key = "d", cb = require("nvim-tree.config").nvim_tree_callback "trash" },
             },
+        },
+    },
+    actions = {
+        open_file = {
+            resize_window = true,
         },
     },
 }

@@ -132,9 +132,9 @@ nvim_lsp.cssls.setup {
 
 -- typescript
 nvim_lsp.tsserver.setup {
-    on_attach = function(client)
+    on_attach = function(client, bufnr)
         client.resolved_capabilities.document_formatting = false
-        M.on_attach(client)
+        M.on_attach(client, bufnr)
     end,
     flags = {
         debounce_text_changes = 150,
@@ -146,9 +146,9 @@ nvim_lsp.tsserver.setup {
 -- vue
 nvim_lsp.vuels.setup {
     -- https://github.com/ngtinsmith/dotfiles/blob/b78bf3115d746d037c814ce6767b4c6ba38021c5/.vimrc#L559
-    on_attach = function(client)
+    on_attach = function(client, bufnr)
         client.resolved_capabilities.document_formatting = true
-        M.on_attach(client)
+        M.on_attach(client, bufnr)
     end,
     init_options = {
         config = {

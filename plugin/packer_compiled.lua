@@ -139,6 +139,11 @@ _G.packer_plugins = {
     path = "/Users/yunze/.local/share/nvim/site/pack/packer/start/kommentary",
     url = "https://github.com/b3nj5m1n/kommentary"
   },
+  ["lightspeed.nvim"] = {
+    loaded = true,
+    path = "/Users/yunze/.local/share/nvim/site/pack/packer/start/lightspeed.nvim",
+    url = "https://github.com/ggandor/lightspeed.nvim"
+  },
   ["lsp-status.nvim"] = {
     loaded = true,
     path = "/Users/yunze/.local/share/nvim/site/pack/packer/start/lsp-status.nvim",
@@ -148,6 +153,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/yunze/.local/share/nvim/site/pack/packer/start/lspkind-nvim",
     url = "https://github.com/onsails/lspkind-nvim"
+  },
+  ["mkdir.nvim"] = {
+    loaded = true,
+    path = "/Users/yunze/.local/share/nvim/site/pack/packer/start/mkdir.nvim",
+    url = "https://github.com/jghauser/mkdir.nvim"
   },
   ["neoscroll.nvim"] = {
     loaded = true,
@@ -184,11 +194,6 @@ _G.packer_plugins = {
     path = "/Users/yunze/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
   },
-  ["nvim-scratchpad"] = {
-    loaded = true,
-    path = "/Users/yunze/.local/share/nvim/site/pack/packer/start/nvim-scratchpad",
-    url = "/Users/yunze/Documents/Coding/Vim/nvim-scratchpad"
-  },
   ["nvim-tree.lua"] = {
     loaded = true,
     path = "/Users/yunze/.local/share/nvim/site/pack/packer/start/nvim-tree.lua",
@@ -213,6 +218,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/yunze/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
+  },
+  ["palenight.vim"] = {
+    loaded = true,
+    path = "/Users/yunze/.local/share/nvim/site/pack/packer/start/palenight.vim",
+    url = "https://github.com/drewtempelmeyer/palenight.vim"
   },
   ["plenary.nvim"] = {
     loaded = true,
@@ -279,6 +289,11 @@ _G.packer_plugins = {
     path = "/Users/yunze/.local/share/nvim/site/pack/packer/start/vim-pandoc-syntax",
     url = "https://github.com/vim-pandoc/vim-pandoc-syntax"
   },
+  ["vim-repeat"] = {
+    loaded = true,
+    path = "/Users/yunze/.local/share/nvim/site/pack/packer/start/vim-repeat",
+    url = "https://github.com/tpope/vim-repeat"
+  },
   ["vim-surround"] = {
     loaded = true,
     path = "/Users/yunze/.local/share/nvim/site/pack/packer/start/vim-surround",
@@ -302,5 +317,6 @@ if should_profile then save_profiles() end
 end)
 
 if not no_errors then
+  error_msg = error_msg:gsub('"', '\\"')
   vim.api.nvim_command('echohl ErrorMsg | echom "Error in packer_compiled: '..error_msg..'" | echom "Please check your config for correctness" | echohl None')
 end

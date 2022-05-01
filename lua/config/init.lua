@@ -4,7 +4,7 @@ require "config.treesitter"
 require "config.neoscroll"
 require "config.telescope"
 require "config.colorscheme"
-require "config.scratchpad"
+
 require "config.lspconfig"
 -- require("config.nvim-compe")
 require "config.nvim-cmp"

@@ -65,35 +65,23 @@ local vi_mode_colors = {
     NONE = "orange",
 }
 
-local short_vim_mode = {
-    NORMAL = "N",
-    OP = "O",
-    INSERT = "I",
-    VISUAL = "V",
-    LINES = "L",
-    BLOCK = "B",
-    REPLACE = "R",
-    ["V-REPLACE"] = "VR",
-    ENTER = "E",
-    MORE = "M",
-    SELECT = "S",
-    COMMAND = "C",
-    SHELL = "SH",
-    TERM = "T",
-    NONE = "-",
-}
--- }}}
-
--- {{{ Helper functions
-local function wider_than(cols)
-    return vim.api.nvim_win_get_width(0) > cols
-end
-
-local function wider_than_fn(cols)
-    return function()
-        return wider_than(cols)
-    end
-end
+-- local short_vim_mode = {
+--     NORMAL = "N",
+--     OP = "O",
+--     INSERT = "I",
+--     VISUAL = "V",
+--     LINES = "L",
+--     BLOCK = "B",
+--     REPLACE = "R",
+--     ["V-REPLACE"] = "VR",
+--     ENTER = "E",
+--     MORE = "M",
+--     SELECT = "S",
+--     COMMAND = "C",
+--     SHELL = "SH",
+--     TERM = "T",
+--     NONE = "-",
+-- }
 -- }}}
 
 -- Left {{{
@@ -101,12 +89,7 @@ end
 components.left.active[#components.left.active + 1] = {
     provider = function()
         local vim_mode = require("feline.providers.vi_mode").get_vim_mode()
-        -- print("vim_mode: " .. vim_mode)
-        if wider_than(80) then
-            return " " .. vim_mode .. " "
-        else
-            return " " .. short_vim_mode[vim_mode] .. " "
-        end
+        return " " .. vim_mode .. " "
     end,
     hl = function()
         return {
@@ -203,7 +186,6 @@ components.mid.active[#components.mid.active + 1] = {
         fg = "middlegrey",
         style = "italic",
     },
-    enabled = wider_than_fn(80),
 }
 -- }}}
 
@@ -215,7 +197,6 @@ components.right.active[#components.right.active + 1] = {
     hl = {
         fg = "green",
     },
-    enabled = wider_than_fn(80),
     right_sep = " ",
 }
 components.right.active[#components.right.active + 1] = {
@@ -224,7 +205,6 @@ components.right.active[#components.right.active + 1] = {
     hl = {
         fg = "yellow",
     },
-    enabled = wider_than_fn(80),
     right_sep = " ",
 }
 components.right.active[#components.right.active + 1] = {
@@ -233,7 +213,6 @@ components.right.active[#components.right.active + 1] = {
     hl = {
         fg = "red",
     },
-    enabled = wider_than_fn(80),
     right_sep = " ",
 }
 
@@ -244,7 +223,6 @@ components.right.active[#components.right.active + 1] = {
         fg = "purple",
         bg = "section_bg",
     },
-    enabled = wider_than_fn(70),
     icon = "  ",
 }
 
@@ -262,7 +240,7 @@ components.right.active[#components.right.active + 1] = {
         return "  " .. vim.o.ft .. " "
     end,
     enabled = function()
-        return vim.o.ft and wider_than(80)
+        return vim.o.ft
     end,
     hl = { fg = "blue", bg = "section_bg" },
 }
@@ -272,7 +250,6 @@ components.right.active[#components.right.active + 1] = {
     provider = function()
         return "  " .. vim.fn.expand "%:p:h:t" .. " "
     end,
-    enabled = wider_than_fn(70),
     hl = { fg = "blue", bg = "section_bg" },
 }
 
@@ -285,7 +262,6 @@ components.right.active[#components.right.active + 1] = {
         return " " .. string.format("%2d%%%%", vim.fn.round(curr_line / lines * 100))
     end,
     hl = { fg = "darkgrey", bg = "blue" },
-    enabled = wider_than_fn(80),
 }
 
 -- Line & Col number
@@ -297,7 +273,6 @@ components.right.active[#components.right.active + 1] = {
         return "  " .. string.format("%d/%d :%d ", line, total, col)
     end,
     hl = { fg = "darkgrey", bg = "blue" },
-    enabled = wider_than_fn(70),
 }
 
 -- Word count
@@ -309,7 +284,7 @@ components.right.active[#components.right.active + 1] = {
     end,
     enabled = function()
         local show_word_count_filetypes = { "txt", "markdown", "pandoc" }
-        return utils.contains(show_word_count_filetypes, vim.o.ft) and wider_than(80)
+        return utils.contains(show_word_count_filetypes, vim.o.ft)
     end,
     hl = { fg = "darkgrey", bg = "blue" },
 }
@@ -341,20 +316,38 @@ components.left.inactive[1] = {
 -- }}}
 
 -- Colors {{{
+local everforest_palette = vim.api.nvim_eval "everforest#get_palette(everforest#get_configuration().background)"
+for k, v in pairs(everforest_palette) do
+    everforest_palette[k] = v[1]
+end
 local colors = {
-    white = "#cccccc",
-    blue = "#61afef",
-    green = "#98c379",
-    purple = "#c678dd",
-    orange = "#f29718",
-    red = "#e06c75",
-    yellow = "#e5c07b",
-    darkgrey = "#2c323d",
-    middlegrey = "#8791A5",
-    section_bg = "#38393f",
-    fg = "#D0D0D0",
-    bg = "NONE",
+    white = everforest_palette.fg,
+    blue = everforest_palette.blue,
+    green = everforest_palette.green,
+    purple = everforest_palette.purple,
+    orange = everforest_palette.orange,
+    red = everforest_palette.red,
+    yellow = everforest_palette.yellow,
+    darkgrey = everforest_palette.bg0,
+    middlegrey = "#8791A5", -- couldn't really find a suitable replacement
+    section_bg = everforest_palette.bg1,
+    fg = everforest_palette.fg,
+    bg = everforest_palette.none,
 }
+-- local colors = {
+--     white = "#cccccc",
+--     blue = "#61afef",
+--     green = "#98c379",
+--     purple = "#c678dd",
+--     orange = "#f29718",
+--     red = "#e06c75",
+--     yellow = "#e5c07b",
+--     darkgrey = "#2c323d",
+--     middlegrey = "#8791A5",
+--     section_bg = "#38393f",
+--     fg = "#D0D0D0",
+--     bg = "NONE",
+-- }
 -- }}}
 
 require("feline").setup {

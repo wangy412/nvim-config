@@ -2,16 +2,22 @@ vim.cmd [[packadd packer.nvim]]
 
 require("packer").startup(function(use)
     use "wbthomason/packer.nvim"
-    use "EdenEast/nightfox.nvim"
     use "neovim/nvim-lspconfig"
     use "nvim-lua/lsp-status.nvim"
+
+    use "EdenEast/nightfox.nvim"
+    use "drewtempelmeyer/palenight.vim"
+    use "sainnhe/everforest"
 
     use "hrsh7th/cmp-nvim-lsp"
     use "hrsh7th/cmp-buffer"
     use "hrsh7th/cmp-path"
     use "hrsh7th/cmp-cmdline"
     use "saadparwaiz1/cmp_luasnip"
-    use "hrsh7th/nvim-cmp"
+    use {
+        "hrsh7th/nvim-cmp",
+        commit = "4f1358e659d51c69055ac935e618b684cf4f1429",
+    }
 
     use "ggandor/lightspeed.nvim"
 
@@ -67,5 +73,4 @@ require("packer").startup(function(use)
         "nvim-treesitter/nvim-treesitter",
         run = ":TSUpdate",
     }
-    use "~/Documents/Coding/Vim/nvim-scratchpad"
 end)
