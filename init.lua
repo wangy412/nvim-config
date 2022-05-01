@@ -68,12 +68,12 @@ vim.cmd [[
 colorscheme everforest
 ]]
 
-require("transparent").setup {
-    enable = true,
-    extra_groups = {
-        "NormalFloat",
-    },
-}
+-- require("transparent").setup {
+--     enable = true,
+--     extra_groups = {
+--         "NormalFloat",
+--     },
+-- }
 --}}}
 
 --[ Options ]-- {{{

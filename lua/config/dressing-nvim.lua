@@ -3,8 +3,7 @@ require("dressing").setup {
         prefer_width = 0.4,
         min_width = { 40 },
         winblend = 0,
-        -- winhighlight = "NormalFloat:Normal",
-        -- ^ decided to just change the actual NormalFloat
+        winhighlight = "NormalFloat:Normal",
     },
     select = {
         telescope = require("telescope.themes").get_dropdown(),
