@@ -38,6 +38,7 @@ require("packer").startup(function(use)
     use "tpope/vim-surround"
     use "chaoren/vim-wordmotion"
     -- use "plasticboy/vim-markdown"
+    use "cakebaker/scss-syntax.vim"
     use "mattn/emmet-vim"
     use "L3MON4D3/LuaSnip"
     use "knubie/vim-kitty-navigator"
