@@ -11,6 +11,9 @@ require("telescope").setup {
         lsp_code_actions = {
             theme = "cursor",
         },
+        spell_suggest = {
+            theme = "cursor",
+        },
     },
     defaults = {
         mappings = {
@@ -67,18 +70,27 @@ require("telescope").setup {
 -- Key Mappings
 -- stylua: ignore start
 map({ "n", "<C-p>",      "<cmd>lua require('telescope.builtin').find_files()<CR>"            })
+map({ "n", "<leader>fg", "<cmd>lua require('telescope.builtin').live_grep()<CR>"             })
+
 map({ "n", "<C-t>",      "<cmd>lua require('telescope.builtin').treesitter()<CR>"            })
 map({ "n", "z=",         "<cmd>lua require('telescope.builtin').spell_suggest()<CR>"         })
+
+map({ "n", "<leader>fd", "<cmd>lua require('telescope.builtin').diagnostics()<CR>"           })
+
 map({ "n", "<leader>bb", "<cmd>lua require('telescope.builtin').builtin()<CR>"               })
+
 map({ "n", "<leader>gb", "<cmd>lua require('telescope.builtin').git_branches()<CR>"          })
 map({ "n", "<leader>gc", "<cmd>lua require('telescope.builtin').git_commits()<CR>"           })
-map({ "n", "<leader>fs", "<cmd>lua require('telescope.builtin').symbols()<CR>"               })
-map({ "n", "<leader>fg", "<cmd>lua require('telescope.builtin').live_grep()<CR>"             })
+
 map({ "n", "<leader>fb", "<cmd>lua require('telescope.builtin').buffers()<CR>"               })
 map({ "n", "<leader>fh", "<cmd>lua require('telescope.builtin').help_tags()<CR>"             })
 map({ "n", "<leader>fc", "<cmd>lua require('telescope.builtin').commands<CR>"                })
+
 map({ "n", "<leader>ch", "<cmd>lua require('telescope.builtin').command_history()<CR>"       })
 map({ "n", "<leader>sh", "<cmd>lua require('telescope.builtin').search_history()<CR>"        })
+
+map({ "n", "<leader>fs", "<cmd>lua require('telescope.builtin').symbols()<CR>"               })
+
 map({ "n", "<leader>cs", "<cmd>lua require('telescope.builtin').colorscheme()<CR>"           })
 map({ "n", "<leader>rr", "<cmd>lua require('telescope.builtin').reloader()<CR>"              })
 -- stylua: ignore end

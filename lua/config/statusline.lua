@@ -5,14 +5,6 @@ local utils = require "config.utils"
 -- vim.o.laststatus = 3
 
 -- Boilerplate init {{{
-local properties = {
-    force_inactive = {
-        filetypes = {},
-        buftypes = {},
-        bufnames = {},
-    },
-}
-
 local components = {
     left = {
         active = {},
@@ -27,23 +19,6 @@ local components = {
         inactive = {},
     },
 }
--- }}}
-
--- Properties {{{
-
--- properties.force_inactive.filetypes = {
--- 	"NvimTree",
--- 	"dbui",
--- 	"packer",
--- 	"startify",
--- 	"fugitive",
--- 	"fugitiveblame",
--- }
-
--- properties.force_inactive.buftypes = {
--- 	"terminal",
--- }
-
 -- }}}
 
 -- Vi Mode {{{

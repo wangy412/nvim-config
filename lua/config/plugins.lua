@@ -8,6 +8,7 @@ require("packer").startup(function(use)
     use "EdenEast/nightfox.nvim"
     use "drewtempelmeyer/palenight.vim"
     use "sainnhe/everforest"
+    use "xiyaowong/nvim-transparent"
 
     use "hrsh7th/cmp-nvim-lsp"
     use "hrsh7th/cmp-buffer"
@@ -22,6 +23,7 @@ require("packer").startup(function(use)
     use "ggandor/lightspeed.nvim"
 
     use "kyazdani42/nvim-web-devicons"
+    use "stevearc/dressing.nvim"
     use "karb94/neoscroll.nvim"
     use "onsails/lspkind-nvim"
     use "norcalli/nvim-colorizer.lua"
