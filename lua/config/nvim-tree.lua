@@ -3,23 +3,6 @@ local au = require "au"
 
 -- options
 
-vim.g.nvim_tree_symlink_arrow = " -> "
-vim.g.nvim_tree_icons = {
-    folder = {
-        arrow_closed = "",
-        arrow_open = "",
-    },
-    git = {
-        unstaged = "",
-        staged = "",
-        unmerged = "",
-        renamed = "➜",
-        untracked = "",
-        deleted = "",
-        ignored = "◌",
-    },
-}
-
 require("nvim-tree").setup {
     update_focused_file = {
         enable = false,
@@ -30,11 +13,29 @@ require("nvim-tree").setup {
     open_on_setup = true,
     filters = {
         dotfiles = false,
-        custom = { "^\\.DS_Store$", "^\\.git$" },
+        custom = { "^%.DS_Store$", "^%.git$" },
     },
     renderer = {
         indent_markers = {
             enable = true,
+        },
+        icons = {
+            symlink_arrow = " -> ",
+            glyphs = {
+                folder = {
+                    arrow_closed = "",
+                    arrow_open = "",
+                },
+                git = {
+                    unstaged = "",
+                    staged = "",
+                    unmerged = "",
+                    renamed = "➜",
+                    untracked = "",
+                    deleted = "",
+                    ignored = "◌",
+                },
+            },
         },
     },
     view = {

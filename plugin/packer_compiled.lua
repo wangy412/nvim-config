@@ -254,6 +254,16 @@ _G.packer_plugins = {
     path = "/Users/yunze/.local/share/nvim/site/pack/packer/start/presence.nvim",
     url = "https://github.com/andweeb/presence.nvim"
   },
+  ["scss-syntax.vim"] = {
+    loaded = true,
+    path = "/Users/yunze/.local/share/nvim/site/pack/packer/start/scss-syntax.vim",
+    url = "https://github.com/cakebaker/scss-syntax.vim"
+  },
+  ["telescope-fzy-native.nvim"] = {
+    loaded = true,
+    path = "/Users/yunze/.local/share/nvim/site/pack/packer/start/telescope-fzy-native.nvim",
+    url = "https://github.com/nvim-telescope/telescope-fzy-native.nvim"
+  },
   ["telescope-symbols.nvim"] = {
     loaded = true,
     path = "/Users/yunze/.local/share/nvim/site/pack/packer/start/telescope-symbols.nvim",

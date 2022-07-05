@@ -291,7 +291,8 @@ components.left.inactive[1] = {
 -- }}}
 
 -- Colors {{{
-local everforest_palette = vim.api.nvim_eval "everforest#get_palette(everforest#get_configuration().background)"
+-- local everforest_palette = vim.api.nvim_eval "everforest#get_palette(everforest#get_configuration().background)"
+local everforest_palette = vim.api.nvim_eval "everforest#get_palette('medium', {})"
 for k, v in pairs(everforest_palette) do
     everforest_palette[k] = v[1]
 end

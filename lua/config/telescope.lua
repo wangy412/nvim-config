@@ -1,7 +1,3 @@
-local previewers = require "telescope.previewers"
-local sorters = require "telescope.sorters"
-local actions = require "telescope.actions"
-local themes = require "telescope.themes"
 local map = require("config.utils").map
 
 local M = {}
@@ -20,6 +16,8 @@ require("telescope").setup {
             i = {
                 ["<esc>"] = require("telescope.actions").close,
                 ["<M-BS>"] = false,
+                ["<C-Down>"] = require("telescope.actions").cycle_history_next,
+                ["<C-Up>"] = require("telescope.actions").cycle_history_prev,
             },
         },
         vimgrep_arguments = {
@@ -50,13 +48,15 @@ require("telescope").setup {
             -- preview_cutoff = 120,
             -- prompt_position = "bottom",
         },
-        file_sorter = sorters.get_fuzzy_file,
+        -- file_sorter = sorters.get_fuzzy_file,
         file_ignore_patterns = {
-            "node_modules",
-            "dist",
-            "main.dSYM",
+            "node_modules/",
+            "dist/",
+            "main%.dSYM/",
+            "%.git/",
+            "%.DS_Store",
         },
-        generic_sorter = sorters.get_generic_fuzzy_sorter,
+        -- generic_sorter = sorters.get_generic_fuzzy_sorter,
         -- path_display = {"shorten"},
         winblend = 0,
         border = {},
@@ -67,9 +67,11 @@ require("telescope").setup {
     },
 }
 
+require("telescope").load_extension "fzy_native"
+
 -- Key Mappings
 -- stylua: ignore start
-map({ "n", "<C-p>",      "<cmd>lua require('telescope.builtin').find_files()<CR>"            })
+map({ "n", "<C-p>",      "<cmd>lua require('telescope.builtin').find_files({ hidden = true })<CR>"            })
 map({ "n", "<leader>fg", "<cmd>lua require('telescope.builtin').live_grep()<CR>"             })
 
 map({ "n", "<C-t>",      "<cmd>lua require('telescope.builtin').treesitter()<CR>"            })
