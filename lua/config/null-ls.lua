@@ -10,16 +10,16 @@ null_ls.setup {
         -- null_ls.builtins.diagnostics.eslint_d,
         -- null_ls.builtins.diagnostics.eslint,
 
-        -- null_ls.builtins.formatting.eslint_d.with {
-        --     disabled_filetypes = { "markdown", "pandoc" },
-        -- },
+        null_ls.builtins.formatting.eslint_d.with {
+            disabled_filetypes = { "markdown", "pandoc" },
+        },
         null_ls.builtins.formatting.black,
         null_ls.builtins.formatting.stylua,
         null_ls.builtins.formatting.prettierd,
         -- null_ls.builtins.formatting.fourmolu,
-        null_ls.builtins.formatting.clang_format.with {
-            filetypes = { "c" },
-        },
+        -- null_ls.builtins.formatting.clang_format.with {
+        --     filetypes = { "c" },
+        -- },
     },
     on_attach = require("config.lspconfig").on_attach,
 }

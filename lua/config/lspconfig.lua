@@ -20,6 +20,9 @@ M.on_attach = function(client, bufnr)
     if vim.api.nvim_buf_get_option(bufnr, "filetype") == "vue" and client.name == "null-ls" then
         client.resolved_capabilities.document_formatting = false
     end
+    if vim.api.nvim_buf_get_option(bufnr, "filetype") == "cpp" then
+        client.resolved_capabilities.document_formatting = false
+    end
 
     if client.resolved_capabilities.document_formatting then
         vim.cmd [[

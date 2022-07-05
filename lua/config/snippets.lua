@@ -32,6 +32,7 @@ local function newline()
 end
 
 -- stylua: ignore start
+-- todo: use luasnip.extras.fmt
 ls.snippets = {
     cpp = {
         s({ trig = "iofile", dscr = "Set I/O file for cin and cout" }, {
@@ -62,4 +63,13 @@ ls.snippets = {
             i(0)
         }),
     },
+    typescript = {
+        s({ trig = "jsdoc", dscr = "JSDoc comment" }, {
+            t "/**",
+            newline(),
+            t " * ", i(0),
+            newline(),
+            t " */",
+        }),
+    }
 }

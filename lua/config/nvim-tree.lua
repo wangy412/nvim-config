@@ -30,7 +30,7 @@ require("nvim-tree").setup {
     open_on_setup = true,
     filters = {
         dotfiles = false,
-        custom = { ".DS_Store", ".git" },
+        custom = { "^\\.DS_Store$", "^\\.git$" },
     },
     renderer = {
         indent_markers = {

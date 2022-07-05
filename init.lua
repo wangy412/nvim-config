@@ -91,7 +91,7 @@ vim.o.smartindent = true
 
 vim.o.hidden = true
 vim.o.scrolloff = 5
--- vim.o.mouse = "a"
+vim.o.mouse = "a"
 
 vim.o.swapfile = false
 
@@ -117,6 +117,8 @@ vim.o.undodir = "~/.vim/undo"
 
 vim.o.list = true
 vim.o.listchars = "tab:▸·"
+
+vim.g.tex_flavor = "latex"
 -- }}}
 
 --[ Keymaps ]-- {{{
